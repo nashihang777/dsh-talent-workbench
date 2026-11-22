@@ -1,0 +1,22 @@
+- insert:
+    - id: talent-workbench
+      name: '@local/talent-workbench'
+      config:
+        dataDir: ''
+        autoRegisterSkills: true
+        allowRealNames: false
+        import:
+          maxFiles: 40
+          maxBytes: 50331648
+          useAgent: true
+          agentProvider: ''
+          agentModel: ''
+          agentBatch: 3
+          agentTimeoutMs: 90000
+          agentMaxCharsPerResume: 9000
+          maxOcrPages: 6
+          ocrScaleTo: 2400
+          ocrLanguage: 'zh-Hans-CN'
+          poppler:
+            pdftotextPath: ''
+            pdftoppmPath: ''

@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Talent workbench",
+    "description": "Turn resume screening into an explainable, weight-adjustable local workflow: 19 independent dimensions and 13 role templates (research roles plus algorithm, backend, data, quant, product, implementation, medical, manufacturing, compliance and sales families inspired by public job postings), per-dimension derivation, bias diagnostics and an anonymous exchange ledger. Add candidates by hand or import resume files/folders (PDF, DOC, DOCX, RTF, TXT and images, with local OCR for scans). Candidate data stays on this machine and the panel only calls this machine's own service; exchange packs contain anonymized aggregates only. Open it from the Talent icon in the left navigation rail; it fills the main column as a full page.",
+    "detail": "docs/DETAIL.md"
+  }
+}
