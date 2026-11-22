@@ -514,6 +514,11 @@ window.__ModuleLoader__.load({
       'task.archivedState': "已归档",
       'task.activeState': "进行中",
       'task.templateSwitched': "已切换任务模板（生成新版本前不影响历史）",
+      'task.searchPlaceholder': "搜索任务名称、模板或说明…",
+      'task.groupActive': "进行中",
+      'task.groupArchived': "已归档",
+      'task.noMatch': "没有匹配的任务",
+      'task.total': "个任务",
     }
 
     const enOverrides = {
@@ -752,6 +757,11 @@ window.__ModuleLoader__.load({
       'task.archivedState': "archived",
       'task.activeState': "active",
       'task.templateSwitched': "Task template switched (history is preserved)",
+      'task.searchPlaceholder': "Search by task name, template or note…",
+      'task.groupActive': "Active",
+      'task.groupArchived': "Archived",
+      'task.noMatch': "No matching task",
+      'task.total': "tasks",
     }
     const en = { ...zh, ...enOverrides }
 
@@ -1135,6 +1145,57 @@ window.__ModuleLoader__.load({
 }
 @keyframes tw-spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion: reduce){.tw-spin{animation-duration:2.4s}}
+
+/* ---------- task picker ---------- */
+.tw-picker{position:relative;display:inline-flex;flex:0 1 260px;min-width:0}
+.tw-picker-trigger{
+  appearance:none;display:inline-flex;align-items:center;gap:7px;min-width:0;max-width:100%;
+  border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-base);
+  color:var(--dsw-alias-label-primary);border-radius:9px;padding:8px 11px;min-height:34px;
+  font:inherit;font-size:13.5px;line-height:1.2;cursor:pointer;width:100%;
+  transition:border-color .12s ease,background .12s ease;
+}
+.tw-picker-trigger:hover{background:var(--tw-surface)}
+.tw-picker-trigger:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}
+.tw-picker-trigger.open{border-color:var(--dsw-alias-brand-primary);background:var(--tw-surface)}
+.tw-picker-trigger .nm{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;font-weight:600}
+.tw-picker-trigger .ct{
+  flex:0 0 auto;font-size:10.5px;font-variant-numeric:tabular-nums;border-radius:999px;
+  background:var(--tw-surface-2);color:var(--dsw-alias-label-secondary);padding:0 6px;
+}
+.tw-picker-trigger .chev{flex:0 0 auto;font-size:10px;color:var(--dsw-alias-label-secondary)}
+.tw-picker-panel{
+  position:absolute;top:calc(100% + 6px);left:0;z-index:70;width:min(420px,90vw);
+  display:flex;flex-direction:column;max-height:min(60vh,460px);
+  border:1px solid var(--dsw-alias-border-l2);border-radius:12px;background:var(--dsw-alias-bg-overlay);
+  box-shadow:0 18px 48px color-mix(in srgb,var(--dsw-alias-label-primary) 24%,transparent);
+  overflow:hidden;
+}
+.tw-picker-search{display:flex;align-items:center;gap:7px;padding:9px 10px;border-bottom:var(--tw-border);color:var(--dsw-alias-label-secondary)}
+.tw-picker-search .tw-input{min-height:30px;font-size:13px}
+.tw-picker-list{flex:1 1 auto;min-height:0;overflow:auto;padding:5px}
+.tw-picker-group{
+  font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--dsw-alias-label-secondary);
+  padding:7px 8px 4px;text-transform:none;
+}
+.tw-pick-row{
+  appearance:none;display:flex;align-items:center;gap:8px;width:100%;min-width:0;text-align:left;
+  border:1px solid transparent;background:transparent;color:inherit;border-radius:8px;
+  padding:7px 9px;cursor:pointer;font:inherit;font-size:13px;line-height:1.35;
+}
+.tw-pick-row:hover,.tw-pick-row.cursor{background:var(--tw-surface-2)}
+.tw-pick-row.active{background:var(--tw-tint-brand);border-color:color-mix(in srgb,var(--dsw-alias-brand-primary) 42%,transparent)}
+.tw-pick-row:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:-2px}
+.tw-pick-row .nm{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.tw-pick-row .meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:10.5px;
+  color:var(--dsw-alias-label-secondary);margin-top:2px;
+}
+.tw-picker-empty{padding:18px 10px;text-align:center;font-size:12.5px;color:var(--dsw-alias-label-secondary)}
+.tw-picker-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:8px 10px;border-top:var(--tw-border);background:var(--tw-surface);
+}
 
 /* ---------- task + batch chrome ---------- */
 .tw-h3{margin:16px 0 8px;font-size:15px;font-weight:650}
@@ -1826,18 +1887,13 @@ window.__ModuleLoader__.load({
             onCancel: resetImport,
           }),
           h('div', { className: 'tw-toolbar' },
-            h('span', { className: 'tw-label' }, t('task.label')),
-            h('select', {
-              className: 'tw-select',
-              style: { flex: '0 1 240px' },
-              'aria-label': t('task.label'),
-              value: state.activeTaskId ?? '',
-              onChange: (event) => {
-                const nextId = event.target.value
-                call('context.select', { taskId: nextId }).catch(() => {})
-              },
-            }, (state.tasks ?? []).map(item => h('option', { key: item.id, value: item.id }, `${item.name}${item.status === 'archived' ? `（${t('task.archivedState')}）` : ''}`)),
-              (state.tasks ?? []).length === 0 ? h('option', { value: '' }, t('task.none')) : null),
+            h(TaskPicker, {
+              t,
+              tasks: state.tasks ?? [],
+              activeTaskId: state.activeTaskId ?? '',
+              onSelect: (taskId) => { call('context.select', { taskId }).catch(() => {}) },
+              onNewTask: () => setTaskModal(true),
+            }),
             h('span', { className: 'tw-label' }, t('screening.template')),
             h('select', {
               className: 'tw-select',
@@ -2051,6 +2107,138 @@ window.__ModuleLoader__.load({
         }) : null))
     }
 
+
+    /**
+     * Task picker: search, recent-first list and keyboard navigation.
+     *
+     * A <select> stops working once a recruiter runs more than a handful of
+     * tasks, so the header uses a popover with a filter box instead.
+     */
+    function TaskPicker({ t, tasks, activeTaskId, onSelect, onNewTask }) {
+      const [open, setOpen] = useState(false)
+      const [query, setQuery] = useState('')
+      const [cursor, setCursor] = useState(0)
+      const wrapRef = useRef(null)
+      const inputRef = useRef(null)
+
+      const active = tasks.find(item => item.id === activeTaskId) ?? null
+      const needle = query.trim().toLowerCase()
+      const matches = (item) => {
+        if (needle === '') return true
+        return [item.name, item.description, item.templateName]
+          .filter(Boolean)
+          .some(value => String(value).toLowerCase().includes(needle))
+      }
+      const live = tasks.filter(item => item.status !== 'archived' && matches(item))
+      const archived = tasks.filter(item => item.status === 'archived' && matches(item))
+      const flat = [...live, ...archived]
+
+      // Close on outside click / Escape so the popover never traps the page.
+      useEffect(() => {
+        if (!open) return undefined
+        const onPointer = (event) => {
+          const node = wrapRef.current
+          if (node !== null && node.contains(event.target)) return
+          setOpen(false)
+        }
+        const onKey = (event) => { if (event.key === 'Escape') setOpen(false) }
+        document.addEventListener('mousedown', onPointer)
+        document.addEventListener('keydown', onKey)
+        return () => {
+          document.removeEventListener('mousedown', onPointer)
+          document.removeEventListener('keydown', onKey)
+        }
+      }, [open])
+
+      useEffect(() => {
+        if (!open) return
+        setQuery('')
+        setCursor(0)
+        const input = inputRef.current
+        if (input !== null && typeof input.focus === 'function') input.focus()
+      }, [open])
+
+      const choose = (id) => {
+        setOpen(false)
+        if (id !== activeTaskId) onSelect(id)
+      }
+      const onKeyDown = (event) => {
+        if (event.key === 'ArrowDown') {
+          event.preventDefault()
+          setCursor(prev => Math.min(prev + 1, Math.max(0, flat.length - 1)))
+        } else if (event.key === 'ArrowUp') {
+          event.preventDefault()
+          setCursor(prev => Math.max(prev - 1, 0))
+        } else if (event.key === 'Enter') {
+          event.preventDefault()
+          const picked = flat[cursor]
+          if (picked !== undefined) choose(picked.id)
+        } else if (event.key === 'Escape') {
+          event.preventDefault()
+          setOpen(false)
+        }
+      }
+
+      const row = (item) => {
+        const index = flat.indexOf(item)
+        const isActive = item.id === activeTaskId
+        return h('button', {
+          key: item.id,
+          type: 'button',
+          role: 'option',
+          'aria-selected': isActive,
+          className: `tw-pick-row ${isActive ? 'active' : ''} ${index === cursor ? 'cursor' : ''}`,
+          onMouseEnter: () => setCursor(index),
+          onClick: () => choose(item.id),
+        },
+        h('span', { className: 'nm' }, item.name),
+        h('span', { className: 'meta' },
+          h('span', null, `${item.templateName ?? '—'} v${item.templateVersion ?? '—'}`),
+          h('span', null, `${item.batchCount ?? 0} ${t('task.batchUnit')}`),
+          h('span', null, `${item.candidateCount ?? 0} ${t('batch.people')}`),
+          (item.feedbackPending ?? 0) > 0 ? h('span', { className: 'tw-chip warn' }, `${item.feedbackPending} ${t('feedback.pending')}`) : null),
+        isActive ? h(Icon, { name: 'check', size: 12 }) : null)
+      }
+
+      return h('div', { className: 'tw-picker', ref: wrapRef },
+        h('button', {
+          type: 'button',
+          className: `tw-picker-trigger ${open ? 'open' : ''}`,
+          'aria-haspopup': 'listbox',
+          'aria-expanded': open,
+          'aria-label': t('task.label'),
+          title: t('task.label'),
+          onClick: () => setOpen(prev => !prev),
+        },
+        h(Icon, { name: 'sliders', size: 12 }),
+        h('span', { className: 'nm' }, active?.name ?? t('task.none')),
+        active !== null ? h('span', { className: 'ct' }, `${active.candidateCount ?? 0}`) : null,
+        h('span', { className: 'chev', 'aria-hidden': true }, open ? '▴' : '▾')),
+        open ? h('div', { className: 'tw-picker-panel', role: 'listbox', 'aria-label': t('task.label') },
+          h('div', { className: 'tw-picker-search' },
+            h(Icon, { name: 'search', size: 12 }),
+            h('input', {
+              ref: inputRef,
+              className: 'tw-input',
+              value: query,
+              placeholder: t('task.searchPlaceholder'),
+              'aria-label': t('task.searchPlaceholder'),
+              onChange: (event) => { setQuery(event.target.value); setCursor(0) },
+              onKeyDown,
+            })),
+          h('div', { className: 'tw-picker-list' },
+            live.length > 0 ? h('div', { className: 'tw-picker-group' }, t('task.groupActive')) : null,
+            live.map(row),
+            archived.length > 0 ? h('div', { className: 'tw-picker-group' }, t('task.groupArchived')) : null,
+            archived.map(row),
+            flat.length === 0
+              ? h('div', { className: 'tw-picker-empty' }, tasks.length === 0 ? t('task.none') : t('task.noMatch'))
+              : null),
+          h('div', { className: 'tw-picker-foot' },
+            h('span', { className: 'tw-small tw-muted' }, `${tasks.length} ${t('task.total')}`),
+            h(Button, { size: 'sm', variant: 'soft', onClick: () => { setOpen(false); onNewTask() } },
+              h(Icon, { name: 'plus', size: 12 }), t('task.create')))) : null)
+    }
 
     /** The fields shared by the first-run gate and the "new task" dialog. */
     function TaskForm({ t, state, call, notify, onDone }) {

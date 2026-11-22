@@ -22,7 +22,14 @@ for (const candidate of DEMO_CANDIDATES) {
   }
 }
 const wb = new TalentWorkbench({ dataDir: dir, db, instance, config: { allowRealNames: false }, onSkillsChanged: () => {} })
+// Two extra tasks make sure the header renders the picker, not just a label;
+// the fixture then switches back to the task that holds the seeded candidates.
+const seededTaskId = wb.snapshot().activeTaskId
+wb.createTask({ name: '渲染任务甲', templateId: Object.keys(db.templates)[0] })
+wb.createTask({ name: '渲染任务乙', templateId: Object.keys(db.templates)[0] })
+wb.setActiveContext({ taskId: seededTaskId })
 const state = wb.snapshot()
+if ((state.tasks ?? []).length < 2) throw new Error('fixture needs at least two tasks')
 
 let queue = []
 const React = {
@@ -106,11 +113,35 @@ const cases = [
   ['demoPreview', [emptyState, false, '', 'screening', null, '', '', '', null, null, '']],
   ['demoOverview', [emptyState, false, '', 'overview', null, '', '', '', null, null, '']],
 ]
+const textSink = []
+const collect = (node) => {
+  if (node === null || node === undefined) return
+  if (typeof node === 'string') { textSink.push(node); return }
+  if (Array.isArray(node)) { node.forEach(collect); return }
+  if (typeof node !== 'object') return
+  if (typeof node.type === 'function') {
+    try { collect(node.type({ ...node.props, children: node.children.length === 1 ? node.children[0] : node.children, t })) } catch { /* recorded by walk */ }
+    return
+  }
+  collect(node.children)
+}
+
 for (const [name, values] of cases) {
   queue = [...values]
   const nodes = walk(Workbench({ t }), name, 0)
   console.log(`${name}: nodes=${nodes}`)
+  if (name === 'overview') {
+    textSink.length = 0
+    queue = [...values]
+    collect(Workbench({ t }))
+  }
 }
+
+const activeTaskName = state.tasks.find(task => task.id === state.activeTaskId)?.name ?? ''
+console.log(textSink.includes(activeTaskName)
+  ? `ok   header picker shows the active task (${activeTaskName})`
+  : `FAIL header picker missing the active task (${activeTaskName}) -> ${textSink.slice(0, 12).join(' | ')}`)
+if (!textSink.includes(activeTaskName)) process.exitCode = 1
 if (errors.length > 0) {
   console.log('\nERRORS:')
   for (const error of errors) console.log(' -', error)

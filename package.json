@@ -1,6 +1,6 @@
 {
   "name": "@nashihang777/dsh-talent-workbench",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "type": "module",
   "description": "本地优先的人才匹配工作台：可调权重的岗位模板（研究型 + 互联网/制造/医疗/金融等岗位族）、独立维度技能、简历批量导入、可回溯的筛选推导与匿名交换账本。",
   "license": "MIT",
