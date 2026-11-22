@@ -1,6 +1,6 @@
 - insert:
     - id: talent-workbench
-      name: '@local/talent-workbench'
+      name: '@nashihang777/dsh-talent-workbench'
       config:
         dataDir: ''
         autoRegisterSkills: true

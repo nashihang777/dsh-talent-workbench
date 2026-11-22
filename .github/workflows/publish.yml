@@ -1,0 +1,100 @@
+name: publish
+
+# Publish to npm with GitHub OIDC (trusted publishing) — no long-lived npm token.
+#
+# - push a v* tag  → verify, then publish to npm with provenance
+# - manual trigger → verify only, plus `npm publish --dry-run`
+#
+# One-time setup is documented in RELEASING.md.
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check index.js
+          node --check client.js
+          node --check lib/workbench.js
+          node --check lib/engine.js
+          node --check lib/store.js
+          node --check lib/exchange.js
+          node --check lib/agent-extract.js
+          node --check lib/seed.js
+          node --check lib/seed-industry.js
+          node --check lib/import/extract.js
+
+      - name: Check package metadata and tag
+        run: |
+          node -e "const p=require('./package.json'); const ref=process.env.GITHUB_REF_NAME||''; if(!p.name.startsWith('@nashihang777/')){console.error('unexpected package name: '+p.name);process.exit(1)} if(ref.startsWith('v') && ref.slice(1)!==p.version){console.error('tag '+ref+' does not match package.json version '+p.version);process.exit(1)} console.log('package ok:',p.name,p.version)"
+
+      - name: Check the localisation files parse
+        run: |
+          node -e "for (const f of ['locale/zh.json','locale/en.json']) { JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('ok', f) }"
+
+      # The self-checks that do not depend on a Windows host (OCR/Word fixtures
+      # live in dev/import-smoke.mjs and are skipped on purpose).
+      - name: Run self-checks
+        run: |
+          node dev/smoke.mjs
+          node dev/industry-smoke.mjs
+          node dev/field-smoke.mjs
+          node dev/agent-smoke.mjs
+          node dev/background-smoke.mjs
+          node dev/render-smoke.mjs
+          node dev/import-render.mjs
+          node dev/slots-smoke.mjs
+
+      - name: Show what would be published
+        run: npm pack --dry-run
+
+  publish:
+    name: Publish to npm (trusted publishing)
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      # Trusted publishing needs npm >= 11.5; Node 24 bundles a compatible npm.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Show tool versions
+        run: |
+          node --version
+          npm --version
+
+      # No NODE_AUTH_TOKEN: npm exchanges the GitHub OIDC token for a
+      # short-lived publish credential (trusted publishing).
+      - name: Publish
+        if: github.event_name == 'push'
+        run: npm publish --access public --provenance
+
+      - name: Dry run (manual trigger only)
+        if: github.event_name == 'workflow_dispatch'
+        run: npm publish --dry-run --access public

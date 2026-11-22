@@ -4,7 +4,7 @@
  * exchange ledger and local backup controls.
  */
 window.__ModuleLoader__.load({
-  id: '@local/talent-workbench',
+  id: '@nashihang777/dsh-talent-workbench',
   factory(require) {
     const React = require('react')
     const h = React.createElement

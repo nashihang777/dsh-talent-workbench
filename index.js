@@ -278,7 +278,7 @@ export function apply(ctx, config = {}) {
         whenToUse: spec.whenToUse,
         content: renderSkillMarkdown(spec),
         metadata: {
-          plugin: '@local/talent-workbench',
+          plugin: '@nashihang777/dsh-talent-workbench',
           dimensionId: spec.id,
           version: spec.version,
           localOnly: true,

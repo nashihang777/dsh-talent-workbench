@@ -1,14 +1,27 @@
-# 人才匹配工作台（`@local/talent-workbench`）
+# 人才匹配工作台（`@nashihang777/dsh-talent-workbench`）
 
 [![topic: dsh-plugin](https://img.shields.io/badge/topic-dsh--plugin-0b7285)](https://github.com/topics/dsh-plugin)
+[![npm](https://img.shields.io/npm/v/@nashihang777/dsh-talent-workbench?label=npm)](https://www.npmjs.com/package/@nashihang777/dsh-talent-workbench)
 [![license: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![local-first](https://img.shields.io/badge/privacy-local--first-2e9c8f)](README.md#本地数据与隐私)
 
-**简体中文** · [GitHub](https://github.com/nashihang777/dsh-talent-workbench) · [Gitee](https://gitee.com/shijiehanghai/dsh-talent-workbench)
+**简体中文** · [GitHub](https://github.com/nashihang777/dsh-talent-workbench) · [Gitee](https://gitee.com/shijiehanghai/dsh-talent-workbench) · [npm](https://www.npmjs.com/package/@nashihang777/dsh-talent-workbench) · [发布流程](RELEASING.md)
 
 > **DeepSeek Harness 插件**：把简历筛选变成可解释、可调权重的本地流程——左边栏一个图标打开整页工作台，19 个独立考察维度、13 个岗位模板、逐维推导、批量导入（智能体识别字段）与匿名交换账本。
 
 候选人信息只写本机 JSON 库；文字与 OCR 全部本地完成，仅字段识别会把你提取出的**纯文本**发给你自己配置的模型，可一键关闭。
+
+## 安装
+
+```bash
+# 从 npm 安装（推荐）
+dsh plugin install @nashihang777/dsh-talent-workbench
+
+# 或直接用本仓库源码开发
+git clone https://github.com/nashihang777/dsh-talent-workbench.git
+```
+
+安装后刷新页面，左侧导航栏会出现「人才匹配」图标。发布与版本号约定见 [RELEASING.md](RELEASING.md)。
 
 ## 它解决什么
 
@@ -226,7 +239,7 @@ talent_screening action=import_resumes scanId=<id> keys=["item-1","item-2"]
 
 ```yaml
 - id: talent-workbench
-  name: '@local/talent-workbench'
+  name: '@nashihang777/dsh-talent-workbench'
   config:
     dataDir: ''                 # 留空 = $DSH_PROFILE_DIR/talent-workbench
     autoRegisterSkills: true
