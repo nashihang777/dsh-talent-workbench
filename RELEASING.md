@@ -12,15 +12,26 @@
 
 ### 1. 先手动发布一次（bootstrap）
 
-Trusted Publishing 只能在**已经存在于 npm 上**的包上配置，所以第一次必须手动发：
+npm **不支持为尚不存在的包预配置 Trusted Publisher**：配置入口在包自己的 Settings 页，
+包不存在就没有那个页面，直接跑 OIDC 工作流会在 publish 步骤失败
+（npm 官方文档：[trusted publishing](https://docs.npmjs.com/trusted-publishers)，相关 issue
+[npm/documentation#1926](https://github.com/npm/documentation/issues/1926)）。
+所以第一次必须手动发一次，让包先存在：
 
 ```bash
 cd talent-workbench
-npm login                      # 浏览器登录，或用已有的 npm 账号
+npm login                      # 浏览器登录（本机 npm 11.9 可用）
 npm publish --access public    # 若账号开了 2FA，会要求输入一次 OTP
 ```
 
-发包前确认文件名与版本：`@nashihang777/dsh-talent-workbench`、`version` 与即将打的标签一致。
+如果不方便交互式登录，可以走 token：
+
+1. npm → **Access Tokens** → 生成 **Classic / Automation** 类型令牌（Automation 才会绕过 2FA；
+   新包还不存在，Granular token 无法限定到这个包）；
+2. `npm config set //registry.npmjs.org/:_authToken=<token>`，发布后**建议立刻撤销**该令牌。
+
+> 这一次发布的版本就是 **1.6.1**。之后所有版本都走 CI，
+> 所以下一个版本要从 **1.6.2** 起（`npm version patch`）。
 
 ### 2. 配置 Trusted Publisher（关键：权限要含 `npm publish`）
 
