@@ -418,6 +418,97 @@ window.__ModuleLoader__.load({
       'candidate.numerical': '数值算法',
       'candidate.thermodynamics': '热力学/相图',
       'candidate.ml': '机器学习',
+      'tab.batches': "批次与反馈",
+      'task.label': "招聘任务",
+      'task.none': "还没有招聘任务",
+      'task.gateTitle': "先建立一个招聘任务",
+      'task.gateBody': "所有简历都归属于某个招聘任务下的某个面试批次，不同批次的简历不会混在一起比较。先建任务，再选模板，最后把简历分成批次。",
+      'task.gateStep1': "建立招聘任务",
+      'task.gateStep1Body': "一个岗位一个任务，例如「算法工程师 · 2026 春招」。",
+      'task.gateStep2': "选择初始模板",
+      'task.gateStep2Body': "从 13 个岗位模板里挑一个，或之后在模板页自己写。",
+      'task.gateStep3': "上传简历并分批",
+      'task.gateStep3Body': "按面试日期分组，同一天或相近两三天的简历放进同一个批次。",
+      'task.create': "建立招聘任务",
+      'task.name': "任务名称",
+      'task.namePlaceholder': "例如：算法工程师 · 2026 春招",
+      'task.nameRequired': "请填写任务名称",
+      'task.description': "任务说明",
+      'task.descriptionPlaceholder': "招聘背景、HC、面试节奏等（可留空）",
+      'task.initialTemplate': "初始模板",
+      'task.initialTemplateHint': "任务建好后仍可随时切换模板，切换只影响之后的计算，历史版本会保留。",
+      'task.created': "招聘任务已建立",
+      'task.current': "当前招聘任务",
+      'task.saved': "任务已保存",
+      'task.archive': "归档任务",
+      'task.unarchive': "恢复任务",
+      'task.archived': "任务状态已更新",
+      'task.archivedState': "已归档",
+      'task.activeState': "进行中",
+      'task.templateSwitched': "已切换任务模板（生成新版本前不影响历史）",
+      'batch.title': "面试批次",
+      'batch.subtitle': "同一批次的简历才会互相比较。建议按面试时间划分：同一天，或相近的两三天。",
+      'batch.suggest': "按面试日期建议",
+      'batch.suggestNone': "没有可用的面试日期，先在候选人里补录日期",
+      'batch.suggested': "已按面试日期给出 {n} 组建议",
+      'batch.suggestResult': "{n} 组建议（点击展开）",
+      'batch.createFrom': "按此建批次",
+      'batch.none': "还没有批次",
+      'batch.noneBody': "建立第一个批次，再把简历分配进来",
+      'batch.name': "批次名称",
+      'batch.namePlaceholder': "例如：9 月 12 日面试",
+      'batch.from': "面试开始",
+      'batch.to': "面试结束",
+      'batch.note': "批次备注（可留空）",
+      'batch.create': "新建批次",
+      'batch.created': "批次已创建",
+      'batch.deleted': "批次已删除",
+      'batch.people': "人",
+      'batch.interview': "面试",
+      'batch.noDate': "未填日期",
+      'batch.current': "当前比较",
+      'batch.assignTitle': "把简历分配进批次",
+      'batch.assignHint': "勾选候选人后分配到所选批次；移动后立即按新批次比较",
+      'batch.pickBatch': "选择批次…",
+      'batch.selected': "位已勾选",
+      'batch.assign': "分配",
+      'batch.assigned': "已分配 {n} 位候选人",
+      'batch.noneSelected': "请先勾选候选人并选择批次",
+      'batch.unassigned': "未分批",
+      'batch.compareIn': "当前比较批次",
+      'batch.manage': "管理批次",
+      'feedback.title': "招聘者反馈",
+      'feedback.subtitle': "针对某份简历或某个批次写下判断，攒够几条后可以让智能体据此调整模板的维度与权重。",
+      'feedback.pending': "条待处理",
+      'feedback.askAgent': "让智能体调整模板",
+      'feedback.scope': "反馈对象",
+      'feedback.scopeCandidate': "某份简历",
+      'feedback.scopeBatch': "某个批次",
+      'feedback.scopeTask': "整个任务",
+      'feedback.target': "具体对象",
+      'feedback.pickTarget': "请选择…",
+      'feedback.kind': "反馈类型",
+      'feedback.kindPositive': "认可",
+      'feedback.kindNegative': "不认可",
+      'feedback.kindAdjust': "希望调整",
+      'feedback.kindNote': "备注",
+      'feedback.message': "写一句具体原因，例如：这位的工程落地证据少，不应排在技术栈强但无交付的人前面",
+      'feedback.add': "记录反馈",
+      'feedback.added': "反馈已记录",
+      'feedback.none': "还没有反馈。反馈越具体，智能体调权重时越有依据。",
+      'feedback.appliedTo': "已应用 v",
+      'feedback.agentTitle': "智能体建议的模板调整",
+      'feedback.apply': "应用并生成新版本",
+      'feedback.applyHint': "应用后会生成模板的新版本，旧版本随时可回溯；已应用的反馈会被标记。",
+      'feedback.applied': "已生成模板新版本 v{v}",
+      'feedback.noChange': "这次没有产生调整",
+      'feedback.colDimension': "维度",
+      'feedback.colFrom': "原权重",
+      'feedback.colTo': "新权重",
+      'feedback.newDimension': "新增",
+      'feedback.removed': "移除",
+      'candidate.interviewDate': "面试日期",
+      'candidate.interviewDateHint': "用于自动建议批次划分",
     }
 
     const enOverrides = {
@@ -560,6 +651,97 @@ window.__ModuleLoader__.load({
       'data.refreshApply': 'Apply',
       'data.refreshApplied': 'Updated {n} candidate(s)',
       'data.refreshNone': 'All imported records already match the re-parsed result',
+      'tab.batches': "Batches & feedback",
+      'task.label': "Recruiting task",
+      'task.none': "No recruiting task yet",
+      'task.gateTitle': "Create a recruiting task first",
+      'task.gateBody': "Every resume belongs to one interview batch of one recruiting task, and different batches are never compared together. Create the task, pick a template, then split the resumes into batches.",
+      'task.gateStep1': "Create the task",
+      'task.gateStep1Body': "One role, one task — e.g. “Algorithm engineer · 2026 spring”.",
+      'task.gateStep2': "Pick an initial template",
+      'task.gateStep2Body': "Start from one of the 13 role templates, or write your own later.",
+      'task.gateStep3': "Upload and batch",
+      'task.gateStep3Body': "Group by interview date: the same day, or a run of two or three days.",
+      'task.create': "Create task",
+      'task.name': "Task name",
+      'task.namePlaceholder': "e.g. Algorithm engineer · 2026 spring",
+      'task.nameRequired': "Give the task a name",
+      'task.description': "Description",
+      'task.descriptionPlaceholder': "Headcount, interview cadence, anything useful (optional)",
+      'task.initialTemplate': "Initial template",
+      'task.initialTemplateHint': "You can switch templates later; the switch only affects new calculations and old versions are kept.",
+      'task.created': "Recruiting task created",
+      'task.current': "Current task",
+      'task.saved': "Task saved",
+      'task.archive': "Archive",
+      'task.unarchive': "Restore",
+      'task.archived': "Task status updated",
+      'task.archivedState': "archived",
+      'task.activeState': "active",
+      'task.templateSwitched': "Task template switched (history is preserved)",
+      'batch.title': "Interview batches",
+      'batch.subtitle': "Only resumes in the same batch are compared. Group by interview time: the same day, or two or three close days.",
+      'batch.suggest': "Suggest from interview dates",
+      'batch.suggestNone': "No interview dates yet — add them on the candidates first",
+      'batch.suggested': "{n} suggested groups",
+      'batch.suggestResult': "{n} suggested groups (expand)",
+      'batch.createFrom': "Create this batch",
+      'batch.none': "No batches yet",
+      'batch.noneBody': "Create the first batch, then assign resumes to it",
+      'batch.name': "Batch name",
+      'batch.namePlaceholder': "e.g. Interviews on 12 September",
+      'batch.from': "Interview from",
+      'batch.to': "Interview to",
+      'batch.note': "Batch note (optional)",
+      'batch.create': "New batch",
+      'batch.created': "Batch created",
+      'batch.deleted': "Batch deleted",
+      'batch.people': "people",
+      'batch.interview': "interviews",
+      'batch.noDate': "no date",
+      'batch.current': "comparing",
+      'batch.assignTitle': "Assign resumes to a batch",
+      'batch.assignHint': "Tick candidates, then assign them; rankings update immediately",
+      'batch.pickBatch': "Pick a batch…",
+      'batch.selected': "selected",
+      'batch.assign': "Assign",
+      'batch.assigned': "Assigned {n} candidate(s)",
+      'batch.noneSelected': "Tick candidates and pick a batch first",
+      'batch.unassigned': "unassigned",
+      'batch.compareIn': "Comparing batch",
+      'batch.manage': "Manage batches",
+      'feedback.title': "Reviewer feedback",
+      'feedback.subtitle': "Record a judgement on one resume or a whole batch; once you have a few, the agent can adjust the template dimensions and weights.",
+      'feedback.pending': "pending",
+      'feedback.askAgent': "Ask the agent to adjust",
+      'feedback.scope': "Feedback on",
+      'feedback.scopeCandidate': "One resume",
+      'feedback.scopeBatch': "One batch",
+      'feedback.scopeTask': "Whole task",
+      'feedback.target': "Which one",
+      'feedback.pickTarget': "Pick one…",
+      'feedback.kind': "Kind",
+      'feedback.kindPositive': "Agree",
+      'feedback.kindNegative': "Disagree",
+      'feedback.kindAdjust': "Needs adjusting",
+      'feedback.kindNote': "Note",
+      'feedback.message': "One concrete reason, e.g. “thin delivery evidence, should not outrank strong tech stack without shipping”",
+      'feedback.add': "Record feedback",
+      'feedback.added': "Feedback recorded",
+      'feedback.none': "No feedback yet. The more specific it is, the better the agent can justify a change.",
+      'feedback.appliedTo': "applied in v",
+      'feedback.agentTitle': "Suggested template adjustment",
+      'feedback.apply': "Apply as a new version",
+      'feedback.applyHint': "Applying creates a new template version; old versions remain rollback-able and applied feedback is marked.",
+      'feedback.applied': "Created template version v{v}",
+      'feedback.noChange': "No adjustment this time",
+      'feedback.colDimension': "Dimension",
+      'feedback.colFrom': "From",
+      'feedback.colTo': "To",
+      'feedback.newDimension': "new",
+      'feedback.removed': "removed",
+      'candidate.interviewDate': "Interview date",
+      'candidate.interviewDateHint': "Used to suggest batch boundaries",
     }
     const en = { ...zh, ...enOverrides }
 
@@ -943,6 +1125,34 @@ window.__ModuleLoader__.load({
 }
 @keyframes tw-spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion: reduce){.tw-spin{animation-duration:2.4s}}
+
+/* ---------- task + batch chrome ---------- */
+.tw-h3{margin:16px 0 8px;font-size:15px;font-weight:650}
+.tw-h4{margin:12px 0 6px;font-size:13.5px;font-weight:650}
+.tw-batchbar{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  border:var(--tw-border);border-radius:12px;background:var(--tw-surface);
+  padding:9px 12px;box-shadow:var(--tw-shadow-sm);
+}
+.tw-batchchip{
+  appearance:none;display:inline-flex;align-items:center;gap:7px;cursor:pointer;
+  border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-base);
+  color:var(--dsw-alias-label-secondary);border-radius:999px;padding:5px 12px;
+  font:inherit;font-size:12.5px;line-height:1.4;transition:background .12s ease,border-color .12s ease,color .12s ease;
+}
+.tw-batchchip:hover{border-color:color-mix(in srgb,var(--dsw-alias-brand-primary) 45%,var(--dsw-alias-border-l2));color:var(--dsw-alias-label-primary)}
+.tw-batchchip:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}
+.tw-batchchip .nm{font-weight:600}
+.tw-batchchip .ct{
+  font-size:10.5px;font-variant-numeric:tabular-nums;border-radius:999px;
+  background:var(--tw-surface-2);padding:0 6px;color:var(--dsw-alias-label-secondary);
+}
+.tw-batchchip .dt{font-size:10.5px;color:var(--dsw-alias-label-secondary);opacity:.85}
+.tw-batchchip.active{
+  background:var(--tw-tint-brand);border-color:color-mix(in srgb,var(--dsw-alias-brand-primary) 55%,transparent);
+  color:var(--dsw-alias-brand-primary);font-weight:600;
+}
+.tw-batchchip.active .ct{background:var(--tw-tint-brand-strong);color:var(--dsw-alias-brand-primary)}
 
 /* ---------- import rows ---------- */
 .tw-import-row{display:flex;align-items:flex-start;gap:8px;border:var(--tw-border);border-radius:10px;padding:10px 12px;background:var(--dsw-alias-bg-base)}
@@ -1356,7 +1566,7 @@ window.__ModuleLoader__.load({
         try {
           const body = await apiFetch('/state')
           setState(body)
-          setTab(body.settings?.activeTab && ['overview', 'screening', 'templates', 'skills', 'exchange', 'data'].includes(body.settings.activeTab) ? body.settings.activeTab : 'overview')
+          setTab(body.settings?.activeTab && ['overview', 'screening', 'batches', 'templates', 'skills', 'exchange', 'data'].includes(body.settings.activeTab) ? body.settings.activeTab : 'overview')
           if (body.candidates.length > 0) {
             setSelectedCandidateId((current) => current || body.results?.[0]?.candidateId || body.candidates[0].id)
           }
@@ -1525,6 +1735,7 @@ window.__ModuleLoader__.load({
       const tabs = [
         { id: 'overview', label: t('tab.overview'), count: null },
         { id: 'screening', label: t('tab.screening'), count: displayCandidates.length },
+        { id: 'batches', label: t('tab.batches'), count: (state.batches ?? []).length },
         { id: 'templates', label: t('tab.templates'), count: state.templates.length },
         { id: 'skills', label: t('tab.skills'), count: state.skills.length },
         { id: 'exchange', label: t('tab.exchange'), count: state.exchange.chainLength },
@@ -1603,6 +1814,18 @@ window.__ModuleLoader__.load({
             onCancel: resetImport,
           }),
           h('div', { className: 'tw-toolbar' },
+            h('span', { className: 'tw-label' }, t('task.label')),
+            h('select', {
+              className: 'tw-select',
+              style: { flex: '0 1 240px' },
+              'aria-label': t('task.label'),
+              value: state.activeTaskId ?? '',
+              onChange: (event) => {
+                const nextId = event.target.value
+                call('context.select', { taskId: nextId }).catch(() => {})
+              },
+            }, (state.tasks ?? []).map(item => h('option', { key: item.id, value: item.id }, `${item.name}${item.status === 'archived' ? `（${t('task.archivedState')}）` : ''}`)),
+              (state.tasks ?? []).length === 0 ? h('option', { value: '' }, t('task.none')) : null),
             h('span', { className: 'tw-label' }, t('screening.template')),
             h('select', {
               className: 'tw-select',
@@ -1611,7 +1834,13 @@ window.__ModuleLoader__.load({
               value: state.activeTemplateId,
               onChange: (event) => {
                 const nextId = event.target.value
-                guard(() => { call('settings.update', { activeTemplateId: nextId }).catch(() => {}) })
+                const apply = () => {
+                  const request = state.activeTaskId
+                    ? call('task.update', { taskId: state.activeTaskId, templateId: nextId })
+                    : call('settings.update', { activeTemplateId: nextId })
+                  request.catch(() => {})
+                }
+                guard(apply)
               },
             }, state.templates.map(item => h('option', { key: item.id, value: item.id }, `${item.current?.name ?? item.id} · v${item.currentVersion}`))),
             h('div', { className: 'tw-spacer' }),
@@ -1629,17 +1858,23 @@ window.__ModuleLoader__.load({
           }, item.label, item.count === null ? null : h('span', { className: 'count' }, item.count)))),
         h(Notice, { notice, onClose: () => setNotice(null) }),
         h('div', { className: 'tw-content' },
+          (state.tasks ?? []).length === 0
+            ? h(TaskGate, { t, state, call, notify })
+            : h('div', { className: 'tw-grid', style: { gap: 12 } },
           demoMode ? h('div', { className: 'tw-draftbar' },
             h(Icon, { name: 'book', size: 13 }),
             h('div', { style: { flex: 1, minWidth: 0 } }, t('demo.banner')),
             h(Button, { size: 'sm', onClick: () => setImportOpen(true) }, h(Icon, { name: 'upload', size: 12 }), t('screening.import')),
             h(Button, { size: 'sm', variant: 'primary', onClick: () => setCandidateModal({ mode: 'create' }) }, t('screening.addCandidate'))) : null,
+          tab === 'batches' ? h(TasksPanel, { state, t, call, notify, busy }) : null,
           tab === 'overview' ? h(Overview, { state, t, activeTemplate, demoMode, onGo: switchTab, onEditTemplate: () => switchTab('templates') }) : null,
           tab === 'screening' ? h(Screening, {
             state, t, template: effectiveTemplate, isDraft, rows, skillMap, query, setQuery, demoMode,
             selectedCandidate, selectedResult, selectedCandidateId, setSelectedCandidateId,
             onAddCandidate: () => setCandidateModal({ mode: 'create' }),
             onImportResumes: () => setImportOpen(true),
+            onSelectBatch: (batchId) => { call('context.select', { batchId }).catch(() => {}) },
+            onManageBatches: () => switchTab('batches'),
             onEditCandidate: (candidate) => { if (demoMode) return; setCandidateModal({ mode: 'edit', candidate }) },
             onDeleteCandidate: (candidateId) => { if (demoMode) return; setDeleteCandidateId(candidateId) },
             onLevelChange: async (candidateId, skillId, level, assessment) => {
@@ -1794,7 +2029,328 @@ window.__ModuleLoader__.load({
           setClientSkips: setImportSkips,
           startImport,
           resetImport,
-        }) : null)
+        }) : null))
+    }
+
+
+    /** Blocking first-run screen: nothing works until a recruiting task exists. */
+    function TaskGate({ t, state, call, notify }) {
+      const [name, setName] = useState('')
+      const [description, setDescription] = useState('')
+      const [templateId, setTemplateId] = useState(state.templates[0]?.id ?? '')
+      const [busy, setBusy] = useState(false)
+      const create = async () => {
+        if (name.trim() === '') { notify(t('task.nameRequired'), 'error'); return }
+        setBusy(true)
+        try {
+          await call('task.create', { name: name.trim(), description: description.trim(), templateId })
+          notify(t('task.created'))
+        } catch { /* call() reported it */ } finally { setBusy(false) }
+      }
+      return h('div', { className: 'tw-grid', style: { gap: 14, maxWidth: 820, margin: '40px auto 0' } },
+        h('div', { className: 'tw-hero' },
+          h('h2', null, t('task.gateTitle')),
+          h('p', null, t('task.gateBody')),
+          h('div', { className: 'tw-steps' },
+            h('div', { className: 'tw-step' }, h('div', { className: 'tw-t' }, h('span', { className: 'n' }, '1'), t('task.gateStep1')), h('div', { className: 'tw-b' }, t('task.gateStep1Body'))),
+            h('div', { className: 'tw-step' }, h('div', { className: 'tw-t' }, h('span', { className: 'n' }, '2'), t('task.gateStep2')), h('div', { className: 'tw-b' }, t('task.gateStep2Body'))),
+            h('div', { className: 'tw-step' }, h('div', { className: 'tw-t' }, h('span', { className: 'n' }, '3'), t('task.gateStep3')), h('div', { className: 'tw-b' }, t('task.gateStep3Body'))))),
+        h('div', { className: 'tw-card' },
+          h('div', { className: 'tw-card-title' }, t('task.create')),
+          h('div', { className: 'tw-grid', style: { gap: 10, marginTop: 10 } },
+            h(Field, { label: t('task.name') },
+              h('input', { className: 'tw-input', value: name, autoFocus: true, placeholder: t('task.namePlaceholder'), onChange: event => setName(event.target.value), onKeyDown: event => { if (event.key === 'Enter') create() } })),
+            h(Field, { label: t('task.description') },
+              h('textarea', { className: 'tw-textarea', rows: 2, value: description, placeholder: t('task.descriptionPlaceholder'), onChange: event => setDescription(event.target.value) })),
+            h(Field, { label: t('task.initialTemplate') },
+              h('select', { className: 'tw-select', value: templateId, onChange: event => setTemplateId(event.target.value) },
+                state.templates.map(item => h('option', { key: item.id, value: item.id }, `${item.current?.name ?? item.id} · v${item.currentVersion}`)))),
+            h('div', { className: 'tw-hint' }, t('task.initialTemplateHint'))),
+          h('div', { className: 'tw-row', style: { marginTop: 14, justifyContent: 'flex-end' } },
+            h(Button, { variant: 'primary', disabled: busy, onClick: create }, h(Icon, { name: 'plus', size: 13 }), t('task.create')))))
+    }
+
+    /** Task switcher, batch board and the feedback -> template loop. */
+    function TasksPanel({ state, t, call, notify, busy }) {
+      const task = state.activeTask
+      const batches = state.batches ?? []
+      const all = state.allCandidates ?? []
+      const feedback = state.feedback ?? []
+      const taskCandidates = task === null ? [] : all.filter(candidate => candidate.taskId === task.id)
+      const [name, setName] = useState(task?.name ?? '')
+      const [description, setDescription] = useState(task?.description ?? '')
+      const [batchName, setBatchName] = useState('')
+      const [from, setFrom] = useState('')
+      const [to, setTo] = useState('')
+      const [batchNote, setBatchNote] = useState('')
+      const [assignTarget, setAssignTarget] = useState(state.activeBatchId ?? '')
+      const [checked, setChecked] = useState([])
+      const [scope, setScope] = useState('candidate')
+      const [kind, setKind] = useState('adjust')
+      const [targetId, setTargetId] = useState('')
+      const [message, setMessage] = useState('')
+      const [preview, setPreview] = useState(null)
+      const [suggestion, setSuggestion] = useState(null)
+
+      if (task === null) return h(Empty, { title: t('task.none'), body: t('task.gateBody') })
+
+      const pending = feedback.filter(item => item.appliedAt === '')
+      const batchNameById = new Map(batches.map(batch => [batch.id, batch.name]))
+      const targetOptions = scope === 'candidate'
+        ? taskCandidates.map(candidate => ({ id: candidate.id, label: `${candidate.alias} · ${batchNameById.get(candidate.batchId) ?? t('batch.unassigned')}` }))
+        : scope === 'batch'
+          ? batches.map(batch => ({ id: batch.id, label: `${batch.name} · ${batch.candidateCount} ${t('batch.people')}` }))
+          : []
+
+      const doSave = async () => {
+        try { await call('task.update', { taskId: task.id, name, description }); notify(t('task.saved')) } catch { /* shown by call() */ }
+      }
+      const doArchive = async () => {
+        try { await call('task.update', { taskId: task.id, status: task.status === 'archived' ? 'active' : 'archived' }); notify(t('task.archived')) } catch { /* shown */ }
+      }
+      const doCreateBatch = async () => {
+        try {
+          await call('batch.create', { taskId: task.id, name: batchName.trim(), interviewFrom: from, interviewTo: to, note: batchNote.trim() })
+          setBatchName(''); setFrom(''); setTo(''); setBatchNote('')
+          notify(t('batch.created'))
+        } catch { /* shown */ }
+      }
+      const doSuggest = async () => {
+        try {
+          const body = await call('batch.suggest', { gapDays: 2 })
+          setSuggestion(body)
+          notify((body.groups ?? []).length === 0 ? t('batch.suggestNone') : t('batch.suggested').replace('{n}', String(body.groups.length)))
+        } catch { /* shown */ }
+      }
+      const doCreateFromSuggestion = async (group) => {
+        try {
+          await call('batch.create', {
+            taskId: task.id,
+            name: `${group.from}${group.to === group.from ? '' : `~${group.to}`}`,
+            interviewFrom: group.from,
+            interviewTo: group.to,
+            candidateIds: group.candidateIds,
+          })
+          notify(t('batch.created'))
+        } catch { /* shown */ }
+      }
+      const doAssign = async () => {
+        if (assignTarget === '' || checked.length === 0) { notify(t('batch.noneSelected'), 'error'); return }
+        try {
+          const body = await call('batch.assign', { batchId: assignTarget, candidateIds: checked })
+          setChecked([])
+          notify(t('batch.assigned').replace('{n}', String(body.moved ?? 0)))
+        } catch { /* shown */ }
+      }
+      const doAddFeedback = async () => {
+        try {
+          const chosen = taskCandidates.find(candidate => candidate.id === targetId)
+          await call('feedback.add', {
+            taskId: task.id,
+            scope,
+            kind,
+            candidateId: scope === 'candidate' ? targetId : '',
+            batchId: scope === 'candidate' ? (chosen?.batchId ?? '') : scope === 'batch' ? targetId : '',
+            message,
+          })
+          setMessage('')
+          notify(t('feedback.added'))
+        } catch { /* shown */ }
+      }
+      const doReview = async (apply) => {
+        try {
+          const body = await call('feedback.review', { taskId: task.id, apply })
+          if (body.ok !== true) { notify(String(body.error ?? t('feedback.noChange')), 'warn'); return }
+          if (apply) { setPreview(null); notify(t('feedback.applied').replace('{v}', String(body.version))) } else setPreview(body)
+        } catch { /* shown */ }
+      }
+
+      const taskCard = h('div', { className: 'tw-card' },
+        h('div', { className: 'tw-card-head' },
+          h('div', null,
+            h('div', { className: 'tw-card-title' }, t('task.current')),
+            h('div', { className: 'tw-card-sub' }, `${task.name} · ${new Date(task.createdAt).toLocaleDateString()}`)),
+          h('div', { className: 'tw-row' },
+            h(Badge, { tone: task.status === 'archived' ? 'idle' : 'success' }, task.status === 'archived' ? t('task.archivedState') : t('task.activeState')),
+            h(Button, { size: 'sm', variant: 'ghost', disabled: busy !== '', onClick: doArchive },
+              task.status === 'archived' ? t('task.unarchive') : t('task.archive')))),
+        h('div', { className: 'tw-grid cols2', style: { gap: 10 } },
+          h(Field, { label: t('task.name') }, h('input', { className: 'tw-input', value: name, onChange: event => setName(event.target.value) })),
+          h(Field, { label: t('task.initialTemplate') },
+            h('select', {
+              className: 'tw-select',
+              value: task.templateId,
+              onChange: async event => {
+                try { await call('task.update', { taskId: task.id, templateId: event.target.value }); notify(t('task.templateSwitched')) } catch { /* shown */ }
+              },
+            }, state.templates.map(item => h('option', { key: item.id, value: item.id }, `${item.current?.name ?? item.id} · v${item.currentVersion}`)))),
+          h(Field, { label: t('task.description') },
+            h('input', { className: 'tw-input', value: description, onChange: event => setDescription(event.target.value) }))),
+        h('div', { className: 'tw-row', style: { marginTop: 10, justifyContent: 'flex-end' } },
+          h(Button, { size: 'sm', variant: 'primary', disabled: busy !== '', onClick: doSave }, t('common.save'))))
+
+      const batchRows = batches.map(batch => h('div', {
+        key: batch.id,
+        className: `tw-listitem ${batch.id === state.activeBatchId ? 'active' : ''}`,
+        role: 'button',
+        tabIndex: 0,
+        onClick: () => { call('context.select', { batchId: batch.id }).catch(() => {}) },
+        onKeyDown: event => {
+          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); call('context.select', { batchId: batch.id }).catch(() => {}) }
+        },
+      },
+      h('div', { className: 'tw-row wrap' },
+        h('span', { className: 'name' }, batch.name),
+        h('span', { className: 'tw-small tw-muted' }, `${batch.candidateCount} ${t('batch.people')}`),
+        batch.interviewFrom
+          ? h('span', { className: 'tw-small tw-muted' }, `${t('batch.interview')} ${batch.interviewFrom}${batch.interviewTo && batch.interviewTo !== batch.interviewFrom ? ` ~ ${batch.interviewTo}` : ''}`)
+          : h('span', { className: 'tw-chip' }, t('batch.noDate')),
+        h('span', { className: 'tw-spacer' }),
+        batch.id === state.activeBatchId ? h(Badge, { tone: 'brand' }, t('batch.current')) : null,
+        h(Button, {
+          size: 'sm',
+          variant: 'ghost',
+          onClick: event => {
+            event.stopPropagation()
+            call('batch.delete', { batchId: batch.id })
+              .then(() => notify(t('batch.deleted')))
+              .catch(error => notify(String(error?.message ?? error), 'error'))
+          },
+        }, h(Icon, { name: 'trash', size: 12 }))),
+      batch.note ? h('div', { className: 'tw-small tw-muted' }, batch.note) : null))
+
+      const suggestBlock = suggestion === null || (suggestion.groups ?? []).length === 0 ? null : h('div', { className: 'tw-details', style: { marginTop: 10 } },
+        h('summary', null, t('batch.suggestResult').replace('{n}', String(suggestion.groups.length))),
+        h('div', { className: 'tw-grid', style: { gap: 6, marginTop: 8 } }, suggestion.groups.map(group => h('div', { key: group.index, className: 'tw-row wrap' },
+          h('span', { className: 'tw-small' }, `${group.from}${group.to === group.from ? '' : ` ~ ${group.to}`}`),
+          h('span', { className: 'tw-small tw-muted' }, `${group.candidateIds.length} ${t('batch.people')}：${(group.aliases ?? []).slice(0, 6).join('、')}`),
+          h('span', { className: 'tw-spacer' }),
+          h(Button, { size: 'sm', onClick: () => doCreateFromSuggestion(group) }, t('batch.createFrom'))))))
+
+      const assignBlock = h('div', null,
+        h('div', { className: 'tw-divider' }),
+        h('div', { className: 'tw-h4' }, t('batch.assignTitle')),
+        h('div', { className: 'tw-row wrap' },
+          h('select', { className: 'tw-select', style: { maxWidth: 260 }, value: assignTarget, onChange: event => setAssignTarget(event.target.value) },
+            h('option', { value: '' }, t('batch.pickBatch')),
+            batches.map(batch => h('option', { key: batch.id, value: batch.id }, batch.name))),
+          h('span', { className: 'tw-small tw-muted' }, t('batch.assignHint'))),
+        h('div', { className: 'tw-grid cols3', style: { gap: 4, marginTop: 8 } },
+          taskCandidates.map(candidate => h('label', { key: candidate.id, className: 'tw-row tw-small' },
+            h('input', {
+              type: 'checkbox',
+              checked: checked.includes(candidate.id),
+              onChange: event => setChecked(prev => event.target.checked ? [...prev, candidate.id] : prev.filter(id => id !== candidate.id)),
+            }),
+            h('span', null, candidate.alias),
+            h('span', { className: 'tw-small tw-muted' }, batchNameById.get(candidate.batchId) ?? '')))),
+        h('div', { className: 'tw-row', style: { marginTop: 8 } },
+          h('span', { className: 'tw-small tw-muted' }, `${checked.length} ${t('batch.selected')}`),
+          h('span', { className: 'tw-spacer' }),
+          h(Button, { size: 'sm', variant: 'primary', disabled: busy !== '' || checked.length === 0, onClick: doAssign }, t('batch.assign'))))
+
+      const batchCard = h('div', { className: 'tw-card' },
+        h('div', { className: 'tw-card-head' },
+          h('div', null,
+            h('div', { className: 'tw-card-title' }, t('batch.title')),
+            h('div', { className: 'tw-card-sub' }, t('batch.subtitle'))),
+          h(Button, { size: 'sm', variant: 'ghost', disabled: busy !== '', onClick: doSuggest },
+            h(Icon, { name: 'sliders', size: 12 }), t('batch.suggest'))),
+        batches.length === 0
+          ? h('div', { className: 'tw-empty' }, h('strong', null, t('batch.none')), t('batch.noneBody'))
+          : h('div', { className: 'tw-grid', style: { gap: 6 } }, batchRows),
+        h('div', { className: 'tw-grid cols3', style: { gap: 8, marginTop: 12 } },
+          h(Field, { label: t('batch.name') },
+            h('input', { className: 'tw-input', value: batchName, placeholder: t('batch.namePlaceholder'), onChange: event => setBatchName(event.target.value) })),
+          h(Field, { label: t('batch.from') }, h('input', { className: 'tw-input', type: 'date', value: from, onChange: event => setFrom(event.target.value) })),
+          h(Field, { label: t('batch.to') }, h('input', { className: 'tw-input', type: 'date', value: to, onChange: event => setTo(event.target.value) }))),
+        h('div', { className: 'tw-row wrap', style: { marginTop: 8 } },
+          h('input', { className: 'tw-input', style: { flex: '1 1 260px' }, value: batchNote, placeholder: t('batch.note'), onChange: event => setBatchNote(event.target.value) }),
+          h(Button, { size: 'sm', variant: 'soft', disabled: busy !== '', onClick: doCreateBatch },
+            h(Icon, { name: 'plus', size: 12 }), t('batch.create'))),
+        suggestBlock,
+        assignBlock)
+
+      const kindLabel = { positive: t('feedback.kindPositive'), negative: t('feedback.kindNegative'), adjust: t('feedback.kindAdjust'), note: t('feedback.kindNote') }
+      const feedbackRows = feedback.map(item => h('div', { key: item.id, className: 'tw-import-row' },
+        h('div', { style: { minWidth: 64 } }, h(Badge, { tone: item.kind === 'negative' ? 'error' : item.kind === 'positive' ? 'success' : 'idle' }, kindLabel[item.kind] ?? item.kind)),
+        h('div', { style: { flex: 1, minWidth: 0 } },
+          h('div', { className: 'tw-small' },
+            `${item.scope === 'candidate' ? (item.candidateAlias || item.candidateId) : item.scope === 'batch' ? (item.batchName || item.batchId) : t('feedback.scopeTask')} · ${new Date(item.createdAt).toLocaleString()}`),
+          h('div', { className: 'tw-small tw-muted' }, item.message)),
+        item.appliedAt ? h(Badge, { tone: 'success' }, `${t('feedback.appliedTo')} v${item.appliedTemplateVersion}`) : h(Badge, { tone: 'warn' }, t('feedback.pending')),
+        h(Button, {
+          size: 'sm',
+          variant: 'ghost',
+          onClick: () => { call('feedback.delete', { feedbackId: item.id }).catch(error => notify(String(error?.message ?? error), 'error')) },
+        }, h(Icon, { name: 'x', size: 12 }))))
+
+      const feedbackCard = h('div', { className: 'tw-card' },
+        h('div', { className: 'tw-card-head' },
+          h('div', null,
+            h('div', { className: 'tw-card-title' }, t('feedback.title')),
+            h('div', { className: 'tw-card-sub' }, t('feedback.subtitle'))),
+          h('div', { className: 'tw-row' },
+            h(Badge, { tone: pending.length > 0 ? 'warn' : 'idle' }, `${pending.length} ${t('feedback.pending')}`),
+            h(Button, { size: 'sm', variant: 'primary', disabled: busy !== '' || pending.length === 0, onClick: () => doReview(false) },
+              h(Icon, { name: 'refresh', size: 12 }), t('feedback.askAgent')))),
+        h('div', { className: 'tw-grid cols2', style: { gap: 8 } },
+          h(Field, { label: t('feedback.scope') },
+            h('select', { className: 'tw-select', value: scope, onChange: event => { setScope(event.target.value); setTargetId('') } },
+              h('option', { value: 'candidate' }, t('feedback.scopeCandidate')),
+              h('option', { value: 'batch' }, t('feedback.scopeBatch')),
+              h('option', { value: 'task' }, t('feedback.scopeTask')))),
+          scope === 'task' ? null : h(Field, { label: t('feedback.target') },
+            h('select', { className: 'tw-select', value: targetId, onChange: event => setTargetId(event.target.value) },
+              h('option', { value: '' }, t('feedback.pickTarget')),
+              targetOptions.map(option => h('option', { key: option.id, value: option.id }, option.label)))),
+          h(Field, { label: t('feedback.kind') },
+            h('select', { className: 'tw-select', value: kind, onChange: event => setKind(event.target.value) },
+              h('option', { value: 'positive' }, t('feedback.kindPositive')),
+              h('option', { value: 'negative' }, t('feedback.kindNegative')),
+              h('option', { value: 'adjust' }, t('feedback.kindAdjust')),
+              h('option', { value: 'note' }, t('feedback.kindNote'))))),
+        h('div', { className: 'tw-row wrap', style: { marginTop: 8 } },
+          h('input', {
+            className: 'tw-input',
+            style: { flex: '1 1 320px' },
+            value: message,
+            placeholder: t('feedback.message'),
+            onChange: event => setMessage(event.target.value),
+            onKeyDown: event => { if (event.key === 'Enter') doAddFeedback() },
+          }),
+          h(Button, { size: 'sm', variant: 'soft', disabled: busy !== '', onClick: doAddFeedback }, t('feedback.add'))),
+        feedback.length === 0
+          ? h('div', { className: 'tw-small tw-muted', style: { marginTop: 10 } }, t('feedback.none'))
+          : h('div', { className: 'tw-grid', style: { gap: 6, marginTop: 12 } }, feedbackRows))
+
+      const previewRows = (preview?.changes ?? []).map(change => h('tr', { key: `${change.skillId}-${change.kind}` },
+        h('td', null, change.name),
+        h('td', { className: 'tw-small tw-muted' }, change.from === null ? t('feedback.newDimension') : String(change.from)),
+        h('td', null, change.to === null ? t('feedback.removed') : h(Badge, { tone: 'brand' }, String(change.to)))))
+
+      const previewModal = preview === null ? null : h(Modal, {
+        title: t('feedback.agentTitle'),
+        onClose: () => setPreview(null),
+        width: 'wide',
+        footer: [
+          h(Button, { key: 'cancel', onClick: () => setPreview(null) }, t('common.cancel')),
+          h(Button, { key: 'apply', variant: 'primary', disabled: busy !== '', onClick: () => doReview(true) }, t('feedback.apply')),
+        ],
+      },
+      h('div', { className: 'tw-small tw-muted', style: { marginBottom: 8 } }, preview.summary),
+      previewRows.length === 0
+        ? h('div', { className: 'tw-small tw-muted' }, t('feedback.noChange'))
+        : h('div', { className: 'tw-table-wrap' }, h('table', { className: 'tw-table' },
+          h('thead', null, h('tr', null,
+            h('th', null, t('feedback.colDimension')),
+            h('th', null, t('feedback.colFrom')),
+            h('th', null, t('feedback.colTo')))),
+          h('tbody', null, previewRows))),
+      preview.rationale ? h('div', { className: 'tw-info', style: { marginTop: 10 } }, preview.rationale) : null,
+      h('div', { className: 'tw-small tw-muted', style: { marginTop: 8 } }, t('feedback.applyHint')))
+
+      return h('div', { className: 'tw-grid', style: { gap: 14 } }, taskCard, batchCard, feedbackCard, previewModal)
     }
 
     function Overview({ state, t, activeTemplate, demoMode, onGo, onEditTemplate }) {
@@ -2252,7 +2808,7 @@ window.__ModuleLoader__.load({
       review)
     }
 
-    function Screening({ state, t, template, isDraft, rows, skillMap, query, setQuery, demoMode, selectedCandidate, selectedResult, selectedCandidateId, setSelectedCandidateId, onAddCandidate, onImportResumes, onEditCandidate, onDeleteCandidate, onLevelChange, onOpenSkill, onNewRun, onExportReport, onAutoAssess, onSaveDraft, onDiscardDraft, busy }) {
+    function Screening({ state, t, template, isDraft, rows, skillMap, query, setQuery, demoMode, selectedCandidate, selectedResult, selectedCandidateId, setSelectedCandidateId, onAddCandidate, onImportResumes, onEditCandidate, onDeleteCandidate, onLevelChange, onOpenSkill, onNewRun, onExportReport, onAutoAssess, onSaveDraft, onDiscardDraft, onSelectBatch, onManageBatches, busy }) {
       const lowerQuery = query.trim().toLowerCase()
       const candidateById = new Map(rows.map(row => [row.candidateId, row.candidate]))
       const matches = (row) => {
@@ -2274,6 +2830,19 @@ window.__ModuleLoader__.load({
           h('div', { style: { flex: 1, minWidth: 0 } }, t('screening.draftBanner')),
           h(Button, { size: 'sm', variant: 'primary', onClick: onSaveDraft, disabled: busy !== '' }, t('template.saveVersion')),
           h(Button, { size: 'sm', onClick: onDiscardDraft, disabled: busy !== '' }, t('template.discard'))) : null,
+        h('div', { className: 'tw-batchbar' },
+          h('span', { className: 'tw-label' }, t('batch.compareIn')),
+          (state.batches ?? []).map(batch => h('button', {
+            key: batch.id,
+            type: 'button',
+            className: `tw-batchchip ${batch.id === state.activeBatchId ? 'active' : ''}`,
+            'aria-pressed': batch.id === state.activeBatchId,
+            onClick: () => onSelectBatch(batch.id),
+          },
+          h('span', { className: 'nm' }, batch.name),
+          h('span', { className: 'ct' }, String(batch.candidateCount ?? 0)),
+          batch.interviewFrom ? h('span', { className: 'dt' }, batch.interviewFrom) : null)),
+          h('button', { type: 'button', className: 'tw-btn ghost sm', onClick: onManageBatches }, t('batch.manage'))),
         h('div', { className: 'tw-row wrap' },
           h('div', { style: { flex: '1 1 200px', position: 'relative' } },
             h('span', { style: { position: 'absolute', left: 7, top: 6, color: 'var(--dsw-alias-label-secondary)' } }, h(Icon, { name: 'search', size: 13 })),
@@ -2509,6 +3078,7 @@ window.__ModuleLoader__.load({
         degree: candidate?.degree ?? '硕士',
         school: candidate?.school ?? '',
         stage: candidate?.stage ?? '',
+        interviewDate: candidate?.interviewDate ?? '',
         direction: candidate?.direction ?? '',
         profileText: candidate?.profileText ?? '',
         publications: candidate?.publications ?? [],

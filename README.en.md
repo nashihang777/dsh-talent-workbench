@@ -71,6 +71,42 @@ Templates are based on publicly advertised job titles and requirements — only 
 
 **What the recommend line means**: different role families combine different dimensions, so their attainable totals differ (a medical-device template has a hard gate and narrower dimensions, hence a lower ceiling than a backend template). The recommend/backup lines are set **relative to that role family**; after switching templates, re-check them against your actual candidate pool instead of reusing one template’s thresholds on another.
 
+## Recruiting tasks, interview batches and feedback (since v1.7)
+
+**No task, no candidates.** Every resume hangs off a “recruiting task → interview batch” tree, and resumes in different batches are never compared with each other.
+
+### Three steps
+
+1. **Create the recruiting task** — one role per task (e.g. “Algorithm engineer · 2026 spring”), and pick an initial template for it;
+2. **Upload resumes** — “Import resumes” and “Add candidate” both write into the current batch of the current task;
+3. **Split into batches** — on the “Batches & feedback” page create a batch with its interview dates (the same day, or two or three close days) and assign resumes to it.
+
+When no task exists yet the UI is blocked by “create a recruiting task first” — deliberately, so different roles and different interview sessions never end up in one ranking.
+
+### Suggested batches from interview dates
+
+Candidates carry an “interview date”. “Suggest from interview dates” groups resumes whose interviews are no more than two days apart (configurable) and proposes batches; you decide whether to take them — create one batch per group, or rename and edit the dates by hand.
+
+### Comparing inside a batch
+
+The “Screening” view has a row of batch chips: pick one and everything — ranking, recommendation list, bias diagnostics — is computed inside that batch only, with ranks restarting at 1. Switching task or batch switches the working set immediately.
+
+### Feedback → template adjustment
+
+- Record feedback on **one resume**, **one batch** or **the whole task** (agree / disagree / needs adjusting / note) with a concrete reason;
+- once you have a few, click “Ask the agent to adjust”: the model reads them together with the current template weights and returns a **preview** (which dimension moves from what to what, what is added or removed, and why);
+- confirm with “Apply as a new version” to create a new template version; old versions stay rollback-able and applied feedback is marked so it does not count twice.
+
+Adjustments are bounded, vague feedback produces no change, and the model cannot invent dimensions — it can only reweight existing ones or add from the skill library.
+
+### Agent side
+
+`talent_screening` gained `list_tasks`, `create_task`, `assign_batch`, `add_feedback` and `review_feedback`. The agent can create tasks, split batches, record feedback, and apply the template adjustment once you confirm (`review_feedback` without `apply` is a preview).
+
+### Upgrading
+
+Candidates from 1.6 are adopted into a “默认招聘任务 / 历史导入” (default task / historical import) batch on first load — nothing is lost, and you can rename, split or archive it.
+
 ## Adding candidates: manual entry and resume import
 
 Both paths coexist; the entry points sit in the panel header and in the “Screening” toolbar:
@@ -197,7 +233,7 @@ A full-page layout whose width follows the main area (comfortable for 19 dimensi
 
 The `talent_screening` tool exposes:
 
-`overview`, `list_candidates`, `evaluate`, `import_candidate`, `scan_resumes`, `import_resumes`, `refresh_import_fields`, `agent_refresh_fields`, `set_assessment`, `preview_pack`, `export_pack`, `import_pack`, `verify_chain`.
+`overview`, `list_tasks`, `create_task`, `list_candidates`, `evaluate`, `import_candidate`, `scan_resumes`, `import_resumes`, `refresh_import_fields`, `agent_refresh_fields`, `set_assessment`, `assign_batch`, `add_feedback`, `review_feedback`, `preview_pack`, `export_pack`, `import_pack`, `verify_chain`.
 
 Example flow:
 

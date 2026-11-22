@@ -153,7 +153,7 @@ try {
 const dataDir = mkdtempSync(join(tmpdir(), 'tw-import-data-'))
 const { db, instance } = loadStore(dataDir)
 const wb = new TalentWorkbench({ dataDir, db, instance, config: {}, onSkillsChanged: () => {} })
-const before = Object.keys(wb.snapshot().candidates).length
+const before = Object.keys(wb.snapshot().allCandidates).length
 const scan = await wb.scanResumes({ path: fixtures, recursive: false })
 check('scan found supported files', scan.summary.total >= 2, JSON.stringify(scan.summary))
 check('unsupported file not parsed', scan.items.every(item => !item.name.endsWith('.exe')), JSON.stringify(scan.items.map(item => item.name)))

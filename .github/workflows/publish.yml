@@ -61,6 +61,7 @@ jobs:
           node dev/field-smoke.mjs
           node dev/agent-smoke.mjs
           node dev/background-smoke.mjs
+          node dev/task-smoke.mjs
           node dev/render-smoke.mjs
           node dev/import-render.mjs
           node dev/slots-smoke.mjs

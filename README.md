@@ -71,6 +71,42 @@ git clone https://github.com/nashihang777/dsh-talent-workbench.git
 
 **推荐线的含义**：不同岗位族的维度组合不同，能达到的总分也不同（例如医疗器械岗有硬门槛、维度更尖，理论上限低于后端岗）。模板里的推荐/备选线是**相对该岗位族**设定的，换模板后请按实际候选池分布复核，不要把一个模板的阈值套到另一个模板上。
 
+## 招聘任务、面试批次与反馈（v1.7 起）
+
+**没有招聘任务，就没有候选人。** 插件把所有简历都挂在「招聘任务 → 面试批次」这棵树上，不同批次的简历永远不会混在一起比较。
+
+### 三步走
+
+1. **建立招聘任务**：一个岗位一个任务（如「算法工程师 · 2026 春招」），并为它挑一个初始模板；
+2. **上传简历**：顶部工具栏的「批量导入简历」或「新增候选人」，都会写进当前任务的当前批次；
+3. **划分批次**：在「批次与反馈」页建批次，填上面试日期（同一天或相近两三天），再把简历勾选分配进去。
+
+第一次打开且没有任何任务时，界面会被「先建立一个招聘任务」拦住——这是刻意的，避免把不同岗位、不同场次的简历混在一起排序。
+
+### 面试日期建议
+
+候选人有「面试日期」字段。点「按面试日期建议」，插件会把相隔不超过 2 天的简历归成一组（可调），给出建议批次；是否采纳由你决定，可以逐组一键建批次，也可以手动改名、改日期。
+
+### 在批次内比较
+
+「筛选推导」顶部有一排批次芯片，点哪个就只看哪个批次：排名、推荐名单、偏差诊断都只在该批次内计算，rank 从 1 重新开始。切换任务或批次时，处理对象立刻跟着变。
+
+### 反馈 → 模板调整
+
+- 在「批次与反馈」里可以对**某份简历**、**某个批次**或**整个任务**记一条反馈（认可 / 不认可 / 希望调整 / 备注），也可以直接写一句具体原因；
+- 攒到几条后点「让智能体调整模板」：模型读取这些反馈和当前模板的维度权重，先给出**预览**（哪一维从多少调到多少、新增或移除哪一维、为什么）；
+- 确认后「应用并生成新版本」，生成模板的新版本，旧的版本随时可回溯；被采纳的反馈会标记为已应用，不会重复参与下一轮。
+
+调整幅度有上限、空泛的反馈不会触发改动，模型也不能凭空捏造维度——只能调整已有维度或从技能库里新增。
+
+### 智能体侧
+
+`talent_screening` 新增：`list_tasks`、`create_task`、`assign_batch`、`add_feedback`、`review_feedback`。智能体可以自己建任务、分批、记录反馈，并在你确认后应用模板调整（`review_feedback` 省略 `apply` 时为预览）。
+
+### 升级说明
+
+从 1.6 升级时，已有的候选人会自动收进一个「默认招聘任务 / 历史导入」批次，不会丢数据；你可以改名、拆批或归档。
+
 ## 新增候选人：手动录入与简历文件导入
 
 两种方式并存，入口都在面板顶部与「筛选推导」工具栏：
@@ -202,7 +238,7 @@ OCR 说明：使用 Windows 自带的 `Windows.Media.Ocr`（中文 `zh-Hans-CN`�
 
 `talent_screening` 工具提供：
 
-`overview`、`list_candidates`、`evaluate`、`import_candidate`、`scan_resumes`、`import_resumes`、`refresh_import_fields`、`agent_refresh_fields`、`set_assessment`、`preview_pack`、`export_pack`、`import_pack`、`verify_chain`。
+`overview`、`list_tasks`、`create_task`、`list_candidates`、`evaluate`、`import_candidate`、`scan_resumes`、`import_resumes`、`refresh_import_fields`、`agent_refresh_fields`、`set_assessment`、`assign_batch`、`add_feedback`、`review_feedback`、`preview_pack`、`export_pack`、`import_pack`、`verify_chain`。
 
 示例流程：
 

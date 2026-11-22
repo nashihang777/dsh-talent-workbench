@@ -151,7 +151,7 @@ check('preview flags the name', planRow.changes.alias?.to === '示例甲', JSON.
 check('preview flags the major', planRow.changes.major?.to === '应用数学', JSON.stringify(planRow.changes.major))
 check('preview proposes evidence', (planRow.evidence.publications ?? []).length === 1)
 const appliedRefresh = await wb4.agentRefreshFields({ apply: true })
-const fixed = wb4.snapshot().candidates.find(c => c.id === 'cand-old')
+const fixed = wb4.snapshot().allCandidates.find(c => c.id === 'cand-old')
 check('apply writes the name', fixed.alias === '示例甲', fixed.alias)
 check('apply writes the major', fixed.major === '应用数学', fixed.major)
 check('apply writes evidence', fixed.publications.length === 1)

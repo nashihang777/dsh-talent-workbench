@@ -70,6 +70,30 @@ function mutation(type, payload, workbench) {
   switch (type) {
     case 'settings.update':
       return workbench.updateSettings(payload ?? {})
+    case 'context.select':
+      return workbench.setActiveContext(payload ?? {})
+    case 'task.create':
+      return workbench.createTask(payload ?? {})
+    case 'task.update':
+      return workbench.updateTask(payload?.taskId, payload ?? {})
+    case 'task.delete':
+      return workbench.deleteTask(payload?.taskId)
+    case 'batch.create':
+      return workbench.createBatch(payload ?? {})
+    case 'batch.update':
+      return workbench.updateBatch(payload?.batchId, payload ?? {})
+    case 'batch.delete':
+      return workbench.deleteBatch(payload?.batchId)
+    case 'batch.assign':
+      return workbench.assignBatch(payload?.batchId, payload?.candidateIds)
+    case 'batch.suggest':
+      return workbench.suggestBatches(payload?.gapDays)
+    case 'feedback.add':
+      return workbench.addFeedback(payload ?? {})
+    case 'feedback.delete':
+      return workbench.deleteFeedback(payload?.feedbackId)
+    case 'feedback.review':
+      return workbench.reviewFeedback(payload ?? {})
     case 'candidate.create':
       return workbench.createCandidate(payload ?? {})
     case 'candidate.update':
@@ -159,7 +183,7 @@ function toolDefinition(workbench) {
       properties: {
         action: {
           type: 'string',
-          enum: ['overview', 'list_candidates', 'evaluate', 'import_candidate', 'scan_resumes', 'import_resumes', 'refresh_import_fields', 'agent_refresh_fields', 'set_assessment', 'preview_pack', 'export_pack', 'import_pack', 'verify_chain'],
+          enum: ['overview', 'list_tasks', 'create_task', 'list_candidates', 'evaluate', 'import_candidate', 'scan_resumes', 'import_resumes', 'refresh_import_fields', 'agent_refresh_fields', 'set_assessment', 'assign_batch', 'add_feedback', 'review_feedback', 'preview_pack', 'export_pack', 'import_pack', 'verify_chain'],
           description: 'Operation to perform.',
         },
         candidateId: { type: 'string', description: 'Candidate id for evaluate/set_assessment.' },
@@ -176,7 +200,13 @@ function toolDefinition(workbench) {
         scanId: { type: 'string', description: 'Scan id returned by scan_resumes.' },
         keys: { type: 'array', items: { type: 'string' }, description: 'Scan item keys to import; omit to import every readable item.' },
         overrides: { type: 'object', description: 'Per-item field overrides keyed by scan item key: alias, realName, major, degree, school, direction.' },
-        apply: { type: 'boolean', description: 'For refresh_import_fields: false or omitted previews the diff, true applies it.' },
+        apply: { type: 'boolean', description: 'For refresh_import_fields / review_feedback: false or omitted previews, true applies.' },
+        taskName: { type: 'string', description: 'For create_task: the recruiting task name.' },
+        templateId: { type: 'string', description: 'For create_task: the initial role template id (defaults to the active one).' },
+        batchName: { type: 'string', description: 'For assign_batch: create this batch when batchId is omitted.' },
+        interviewDate: { type: 'string', description: 'For assign_batch: ISO date (YYYY-MM-DD) of the interviews, used to suggest batch boundaries.' },
+        feedback: { type: 'string', description: 'For add_feedback: the reviewer comment.' },
+        kind: { type: 'string', description: 'For add_feedback: positive | negative | adjust | note.' },
         candidateIds: { type: 'array', items: { type: 'string' }, description: 'For refresh_import_fields with apply: limit to these candidate ids; omit for all.' },
         pack: { type: 'object', description: 'Validated anonymous exchange pack for import_pack.' },
       },
@@ -194,6 +224,21 @@ function toolDefinition(workbench) {
     },
     async execute(args) {
       const action = String(args?.action ?? '')
+      if (action === 'list_tasks') {
+        return workbench.toolListTasks()
+      }
+      if (action === 'create_task') {
+        return workbench.toolCreateTask(args ?? {})
+      }
+      if (action === 'assign_batch') {
+        return workbench.toolAssignBatch(args ?? {})
+      }
+      if (action === 'add_feedback') {
+        return workbench.toolAddFeedback(args ?? {})
+      }
+      if (action === 'review_feedback') {
+        return workbench.toolReviewFeedback(args ?? {})
+      }
       if (action === 'overview') {
         const result = workbench.toolOverview()
         return { ...result, summary: result.summary }
@@ -346,7 +391,7 @@ export function apply(ctx, config = {}) {
           const route = url.pathname.slice('/dsh-talent/api/'.length)
           if (request.method === 'GET' || request.method === 'HEAD') {
             if (route === 'health') {
-              sendJson(response, 200, { ok: true, version: '1.6.3', dataDir, runtime: 'local' })
+              sendJson(response, 200, { ok: true, version: '1.7.0', dataDir, runtime: 'local' })
               return
             }
             if (route === 'state') {
