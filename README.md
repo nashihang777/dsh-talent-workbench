@@ -5,23 +5,38 @@
 [![license: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![local-first](https://img.shields.io/badge/privacy-local--first-2e9c8f)](README.md#本地数据与隐私)
 
-**简体中文** · [GitHub](https://github.com/nashihang777/dsh-talent-workbench) · [Gitee](https://gitee.com/shijiehanghai/dsh-talent-workbench) · [npm](https://www.npmjs.com/package/@nashihang777/dsh-talent-workbench) · [发布流程](RELEASING.md)
+**简体中文** · [English](README.en.md) · [GitHub](https://github.com/nashihang777/dsh-talent-workbench) · [Gitee](https://gitee.com/shijiehanghai/dsh-talent-workbench) · [npm](https://www.npmjs.com/package/@nashihang777/dsh-talent-workbench) · [发布流程](RELEASING.md)
+
+![人才匹配工作台：逐维加权推导与本地账本](assets/social-preview.png)
 
 > **DeepSeek Harness 插件**：把简历筛选变成可解释、可调权重的本地流程——左边栏一个图标打开整页工作台，19 个独立考察维度、13 个岗位模板、逐维推导、批量导入（智能体识别字段）与匿名交换账本。
 
 候选人信息只写本机 JSON 库；文字与 OCR 全部本地完成，仅字段识别会把你提取出的**纯文本**发给你自己配置的模型，可一键关闭。
 
-## 安装
+## 在 DeepSeek Harness（Windows）中安装
+
+1. 打开 **DeepSeek Harness** 桌面客户端；
+2. 左侧导航栏点 **「插件」**；
+3. 点右上角 **「添加插件」**；
+4. 在输入框里填包名 **`@nashihang777/dsh-talent-workbench`**；
+5. 点 **「安装」**，等待安装完成；
+6. **刷新页面**，左侧导航栏会出现 **「人才匹配」** 图标，点它即可打开整页工作台。
+
+> 也可以先在 npm 上确认版本：<https://www.npmjs.com/package/@nashihang777/dsh-talent-workbench>。
+> 插件首次打开会自带 22 位**虚构**候选人做界面预览，导入或新增第一位真实候选人后自动隐藏，不会写入数据库。
+
+### 其他安装方式
 
 ```bash
-# 从 npm 安装（推荐）
+# 命令行安装
 dsh plugin install @nashihang777/dsh-talent-workbench
 
-# 或直接用本仓库源码开发
+# 直接用本仓库源码开发（改动立刻生效，无需发版）
 git clone https://github.com/nashihang777/dsh-talent-workbench.git
+# 在 profile 里以 link: 方式加入该目录，或在「插件 → 添加插件」里填本机绝对路径
 ```
 
-安装后刷新页面，左侧导航栏会出现「人才匹配」图标。发布与版本号约定见 [RELEASING.md](RELEASING.md)。
+发布与版本号约定见 [RELEASING.md](RELEASING.md)；把仓库挂到 `dsh-plugin` 话题、上传社交预览图与发 Release 的步骤见 [docs/PUBLISHING.md](docs/PUBLISHING.md)。
 
 ## 它解决什么
 
@@ -187,13 +202,13 @@ OCR 说明：使用 Windows 自带的 `Windows.Media.Ocr`（中文 `zh-Hans-CN`�
 
 `talent_screening` 工具提供：
 
-`overview`、`list_candidates`、`evaluate`、`import_candidate`、`scan_resumes`、`import_resumes`、`set_assessment`、`preview_pack`、`export_pack`、`import_pack`、`verify_chain`。
+`overview`、`list_candidates`、`evaluate`、`import_candidate`、`scan_resumes`、`import_resumes`、`refresh_import_fields`、`agent_refresh_fields`、`set_assessment`、`preview_pack`、`export_pack`、`import_pack`、`verify_chain`。
 
 示例流程：
 
 ```
 talent_screening action=scan_resumes path="D:\\人才招聘\\第三批次" recursive=true
-talent_screening action=scan_resumes path="D:\\人才招聘\\贾强.pdf"
+talent_screening action=scan_resumes path="D:\\人才招聘\\示例甲.pdf"
 talent_screening action=import_resumes scanId=<id> keys=["item-1","item-2"]
 ```
 
@@ -214,9 +229,9 @@ talent_screening action=import_resumes scanId=<id> keys=["item-1","item-2"]
 
 13 个模板与 19 个维度技能属于真实内容，会写入数据库并保留版本历史。
 
-两个研究型模板刻意形成对照：旧口径把「跨学科」「补齐落地短板」调高，推荐名单会被机械/控制背景占据，偏差诊断会点名；校准版降低这两项、提高技术栈与学术水平，推荐名单更分散。这是给招聘方练习"调权重 → 看诊断 → 再调"的示例，不是唯一正确答案。
+两个研究型模板刻意形成对照：旧口径把「跨学科」「补齐落地短板」调高，推荐名单会被机械/控制背景占据，偏差诊断会点名；校准版降低这两项、提高技术栈与学术水平，推荐名单更分散。这是给招聘方练习「调权重 → 看诊断 → 再调」的示例，不是唯一正确答案。
 
-11 个行业模板各自都能在自己的虚构"对口候选人"上排第一（`dev/industry-smoke.mjs` 会断言这一点），用来演示同一批人在不同岗位模板下排序完全不同。
+11 个行业模板各自都能在自己的虚构「对口候选人」上排第一（`dev/industry-smoke.mjs` 会断言这一点），用来演示同一批人在不同岗位模板下排序完全不同。
 
 ## 已知限制
 
@@ -247,6 +262,12 @@ talent_screening action=import_resumes scanId=<id> keys=["item-1","item-2"]
     import:
       maxFiles: 40              # 单次扫描文件数上限
       maxBytes: 50331648        # 单次上传总字节上限（48 MB）
+      useAgent: true            # 字段识别交给智能体；false = 只用本地规则
+      agentProvider: ''         # 留空 = 跟随 DSH 默认模型
+      agentModel: ''
+      agentBatch: 3             # 一次请求解析几份简历
+      agentTimeoutMs: 90000
+      agentMaxCharsPerResume: 9000
       maxOcrPages: 6            # 扫描版 PDF 最多 OCR 的页数
       ocrScaleTo: 2400          # 栅格化后的最长边像素（扫描件页面经常标称超大尺寸，按像素限长才快）
       ocrLanguage: 'zh-Hans-CN'
@@ -258,9 +279,19 @@ talent_screening action=import_resumes scanId=<id> keys=["item-1","item-2"]
 ## 开发
 
 - `index.js`：Host 入口、本地 API、技能注册、`talent_screening` 工具。
-- `lib/`：种子数据、评分引擎、本地存储、匿名交换、工作台服务。
+- `lib/`：种子数据、评分引擎、本地存储、匿名交换、智能体字段抽取、工作台服务。
 - `lib/import/`：简历解析（`extract.js` 调度、`zip.js` 读 DOCX、`ole.js` 读 DOC、`pdf.js` 调 poppler、`ocr.js` + `windows-ocr.ps1` 调 Windows OCR）。
-- `client.js`：右侧栏工作台面板（React，无第三方依赖）。
-- `skills/`：8 份可移植的 `SKILL.md` 规范副本；运行时以本地数据库版本为准。
+- `client.js`：整页工作台面板（React，无第三方依赖）。
+- `skills/`：19 份 `SKILL.md` 规范副本；运行时以本地数据库版本为准。
 - `docs/`：插件详情页与配图。
-- `dev/`：本地自检脚本（不随包发布）。`node dev/smoke.mjs` 验证服务与交换，`node dev/industry-smoke.mjs` 验证 11 个行业模板各自把"对口候选人"排第一、行业关键词上限生效、旧数据库升级时只补新增内容，`node dev/import-smoke.mjs` 现场生成 DOCX/TXT 夹具并验证解析与入库，`node dev/render-smoke.mjs` 用占位 React 渲染全部界面分支。
+- `dev/`：本地自检脚本（不随包发布）。`node dev/smoke.mjs` 验证服务与交换，`node dev/industry-smoke.mjs` 验证 11 个行业模板各自把「对口候选人」排第一、行业关键词上限生效、旧数据库升级时只补新增内容，`node dev/import-smoke.mjs` 现场生成 DOCX/TXT 夹具并验证解析与入库，`node dev/render-smoke.mjs` 用占位 React 渲染全部界面分支，`node dev/background-smoke.mjs` 验证后台导入任务可跨窗口关闭继续、结果可重建。
+
+## 参与与致谢
+
+- 议题与 PR 走 GitHub：<https://github.com/nashihang777/dsh-talent-workbench/issues>；
+- 发布流程（npm Trusted Publishing）见 [RELEASING.md](RELEASING.md)；
+- 本插件与任何招聘平台无隶属关系，模板只参考公开招聘信息提炼考察点。
+
+## 许可
+
+[MIT](LICENSE)

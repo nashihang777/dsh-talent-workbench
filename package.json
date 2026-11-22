@@ -42,6 +42,8 @@
     "docs",
     "icon.svg",
     "README.md",
+    "assets",
+    "README.en.md",
     "LICENSE"
   ],
   "dsh": {
