@@ -14,6 +14,8 @@ import { TalentWorkbench } from '../lib/workbench.js'
 const dir = mkdtempSync(join(tmpdir(), 'tw-import-render-'))
 const { db, instance } = loadStore(dir)
 const wb = new TalentWorkbench({ dataDir: dir, db, instance, config: {}, onSkillsChanged: () => {} })
+// 1.7: a recruiting task is the only way in; create one before importing.
+wb.createTask({ name: '自检任务', templateId: Object.keys(db.templates)[0] })
 const state = wb.snapshot()
 
 const seeds = new Map()
@@ -121,7 +123,7 @@ function renderImport(seedJob, seedRows, open = seedJob !== null) {
   seeds.clear()
   // Workbench hooks in order: state, loading, error, tab, notice, busy,
   // selectedCandidateId, query, then the modal slots; importOpen + job + rows.
-  seeds.set('Workbench', [state, false, '', 'screening', null, '', state.results[0]?.candidateId ?? '', '', null, null, '', null, null, null, null, open, seedJob, seedRows, []])
+  seeds.set('Workbench', [state, false, '', 'screening', null, '', state.results[0]?.candidateId ?? '', '', null, null, '', null, null, null, null, open, false, seedJob, seedRows, []])
   // ImportModal's own hooks: busy, phase, reading, pathText, recursive.
   seeds.set('ImportModal', [false, '', false, '', true])
   textSink.length = 0

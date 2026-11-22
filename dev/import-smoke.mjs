@@ -153,6 +153,8 @@ try {
 const dataDir = mkdtempSync(join(tmpdir(), 'tw-import-data-'))
 const { db, instance } = loadStore(dataDir)
 const wb = new TalentWorkbench({ dataDir, db, instance, config: {}, onSkillsChanged: () => {} })
+// 1.7: a recruiting task is the only way in; create one before importing.
+wb.createTask({ name: '自检任务', templateId: Object.keys(db.templates)[0] })
 const before = Object.keys(wb.snapshot().allCandidates).length
 const scan = await wb.scanResumes({ path: fixtures, recursive: false })
 check('scan found supported files', scan.summary.total >= 2, JSON.stringify(scan.summary))

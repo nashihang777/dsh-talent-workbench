@@ -94,6 +94,8 @@ writeFileSync(join(fixtures, 'notes.zip'), 'not a resume', 'utf8')
 const { db, instance } = loadStore(dir)
 const { extractor, gate } = makeGatedExtractor()
 const wb = new TalentWorkbench({ dataDir: dir, db, instance, config: {}, onSkillsChanged: () => {}, agentExtractor: extractor })
+// 1.7: a recruiting task is the only way in; create one before importing.
+wb.createTask({ name: '自检任务', templateId: Object.keys(db.templates)[0] })
 
 // ---------- start returns before the work is done ----------
 const before = Date.now()

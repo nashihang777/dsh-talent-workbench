@@ -391,7 +391,7 @@ export function apply(ctx, config = {}) {
           const route = url.pathname.slice('/dsh-talent/api/'.length)
           if (request.method === 'GET' || request.method === 'HEAD') {
             if (route === 'health') {
-              sendJson(response, 200, { ok: true, version: '1.7.0', dataDir, runtime: 'local' })
+              sendJson(response, 200, { ok: true, version: '1.7.1', dataDir, runtime: 'local' })
               return
             }
             if (route === 'state') {

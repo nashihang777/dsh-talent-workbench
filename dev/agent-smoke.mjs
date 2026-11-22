@@ -93,6 +93,8 @@ check('extractor available', available.available === true, JSON.stringify(availa
 const dir = mkdtempSync(join(tmpdir(), 'tw-agent-'))
 const { db, instance } = loadStore(dir)
 const wb = new TalentWorkbench({ dataDir: dir, db, instance, config: {}, onSkillsChanged: () => {}, agentExtractor: extractor })
+// 1.7: a recruiting task is the only way in; create one before importing.
+wb.createTask({ name: '自检任务', templateId: Object.keys(db.templates)[0] })
 const fx = join(dir, 'fx')
 mkdirSync(fx, { recursive: true })
 writeFileSync(join(fx, '604_软件工程_示例乙.txt'), '示例乙\n教育经历\n2018.09-2022.06 博士 某大学 软件工程\n研究方向：知识图谱\n', 'utf8')
@@ -143,6 +145,8 @@ const refresher = createAgentExtractor({
   config: {},
 })
 const wb4 = new TalentWorkbench({ dataDir: dir, db, instance, config: {}, onSkillsChanged: () => {}, agentExtractor: refresher })
+// 1.7: a recruiting task is the only way in; create one before importing.
+wb4.createTask({ name: '自检任务', templateId: Object.keys(db.templates)[0] })
 const previewResult = await wb4.agentRefreshFields({ apply: false })
 check('refresh previews without writing', previewResult.preview === true && previewResult.total === 1, JSON.stringify({ total: previewResult.total }))
 check('preview keeps the old name in place', db.candidates['cand-old'].alias === '教育经历')
@@ -173,6 +177,8 @@ const brokenExtractor = createAgentExtractor({
   config: {},
 })
 const wb2 = new TalentWorkbench({ dataDir: dir, db, instance, config: {}, onSkillsChanged: () => {}, agentExtractor: brokenExtractor })
+// 1.7: a recruiting task is the only way in; create one before importing.
+wb2.createTask({ name: '自检任务', templateId: Object.keys(db.templates)[0] })
 const scan2 = await wb2.scanResumes({ path: fx, recursive: false })
 const fallbackItem = scan2.items.find(item => item.name.includes('示例乙'))
 check('failure falls back to rules', fallbackItem?.extractionSource === 'rule', fallbackItem?.extractionSource)
@@ -181,6 +187,8 @@ check('fallback still yields a major', (fallbackItem?.suggestion?.major ?? '') !
 
 // ---------- disabled by config ----------
 const wb3 = new TalentWorkbench({ dataDir: dir, db, instance, config: { import: { useAgent: false } }, onSkillsChanged: () => {}, agentExtractor: extractor })
+// 1.7: a recruiting task is the only way in; create one before importing.
+wb3.createTask({ name: '自检任务', templateId: Object.keys(db.templates)[0] })
 const scan3 = await wb3.scanResumes({ path: fx, recursive: false })
 check('config can disable the agent', scan3.agent?.available === false, JSON.stringify(scan3.agent))
 check('disabled run uses rules', scan3.items.every(item => item.ok !== true || item.extractionSource === 'rule'))

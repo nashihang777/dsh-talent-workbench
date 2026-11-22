@@ -51,6 +51,8 @@ check('advisor title is not a field', nestedFields.major === '力学', nestedFie
 const dir = mkdtempSync(join(tmpdir(), 'tw-multi-'))
 const { db, instance } = loadStore(dir)
 const wb = new TalentWorkbench({ dataDir: dir, db, instance, config: {}, onSkillsChanged: () => {} })
+// 1.7: a recruiting task is the only way in; create one before importing.
+wb.createTask({ name: '自检任务', templateId: Object.keys(db.templates)[0] })
 const fx = join(dir, 'fx')
 const { mkdirSync } = await import('node:fs')
 mkdirSync(fx, { recursive: true })

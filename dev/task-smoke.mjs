@@ -141,9 +141,38 @@ check('no feedback left pending', wb.snapshot().feedback.filter(item => item.app
 const second = await wb.reviewFeedback({ taskId, apply: false })
 check('nothing to review once applied', second.ok !== true)
 
+// ---------- the task is the only entry ------------------------------------
+{
+  const fresh = mkdtempSync(join(tmpdir(), "tw-gate-"))
+  const store = loadStore(fresh)
+  const gateWb = new TalentWorkbench({ dataDir: fresh, db: store.db, instance: store.instance, config: {}, onSkillsChanged: () => {} })
+  let blocked = false
+  try {
+    gateWb.createCandidate({ alias: "无任务候选人", major: "软件工程" })
+  } catch (error) {
+    blocked = /请先建立招聘任务/.test(String(error?.message ?? error))
+  }
+  check("importing without a task is refused", blocked)
+  check("a fresh profile has no task", (gateWb.snapshot().tasks ?? []).length === 0, String(gateWb.snapshot().tasks.length))
+  rmSync(fresh, { recursive: true, force: true })
+}
+
+// ---------- a second task keeps its own pool ------------------------------
+const taskTwo = wb.createTask({ name: "第二个任务 · 测试", templateId: Object.keys(db.templates)[0] })
+check("second task becomes active", wb.snapshot().activeTaskId === taskTwo.taskId)
+const secondBatch = wb.createBatch({ taskId: taskTwo.taskId, name: "第二任务批次", interviewFrom: "2026-10-01", interviewTo: "2026-10-01" })
+const moved = wb.assignBatch(secondBatch.batchId, [a3])
+check("a candidate can be re-filed into another task", db.candidates[a3].taskId === taskTwo.taskId && moved.moved === 1)
+wb.setActiveContext({ taskId: taskTwo.taskId, batchId: secondBatch.batchId })
+const secondSnap = wb.snapshot()
+check("second task only ranks its own candidate", secondSnap.candidates.length === 1 && secondSnap.results[0].candidateId === a3, JSON.stringify(secondSnap.results.map(r => r.candidateId)))
+check("second task lists exactly one batch", secondSnap.batches.length === 1, String(secondSnap.batches.length))
+check("the other task is still listed", secondSnap.tasks.length >= 2, String(secondSnap.tasks.length))
+wb.setActiveContext({ taskId })
+
 // ---------- archiving keeps data -----------------------------------------
 wb.updateTask(taskId, { status: 'archived' })
-check('archived task keeps its candidates', Object.values(db.candidates).filter(c => c.taskId === taskId).length === 3)
+check('archived task keeps its candidates', Object.values(db.candidates).filter(c => c.taskId === taskId).length === 2)
 const afterArchive = wb.snapshot()
 check('archiving switches the active task', afterArchive.activeTaskId !== taskId)
 

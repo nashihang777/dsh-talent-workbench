@@ -419,33 +419,6 @@ window.__ModuleLoader__.load({
       'candidate.thermodynamics': '热力学/相图',
       'candidate.ml': '机器学习',
       'tab.batches': "批次与反馈",
-      'task.label': "招聘任务",
-      'task.none': "还没有招聘任务",
-      'task.gateTitle': "先建立一个招聘任务",
-      'task.gateBody': "所有简历都归属于某个招聘任务下的某个面试批次，不同批次的简历不会混在一起比较。先建任务，再选模板，最后把简历分成批次。",
-      'task.gateStep1': "建立招聘任务",
-      'task.gateStep1Body': "一个岗位一个任务，例如「算法工程师 · 2026 春招」。",
-      'task.gateStep2': "选择初始模板",
-      'task.gateStep2Body': "从 13 个岗位模板里挑一个，或之后在模板页自己写。",
-      'task.gateStep3': "上传简历并分批",
-      'task.gateStep3Body': "按面试日期分组，同一天或相近两三天的简历放进同一个批次。",
-      'task.create': "建立招聘任务",
-      'task.name': "任务名称",
-      'task.namePlaceholder': "例如：算法工程师 · 2026 春招",
-      'task.nameRequired': "请填写任务名称",
-      'task.description': "任务说明",
-      'task.descriptionPlaceholder': "招聘背景、HC、面试节奏等（可留空）",
-      'task.initialTemplate': "初始模板",
-      'task.initialTemplateHint': "任务建好后仍可随时切换模板，切换只影响之后的计算，历史版本会保留。",
-      'task.created': "招聘任务已建立",
-      'task.current': "当前招聘任务",
-      'task.saved': "任务已保存",
-      'task.archive': "归档任务",
-      'task.unarchive': "恢复任务",
-      'task.archived': "任务状态已更新",
-      'task.archivedState': "已归档",
-      'task.activeState': "进行中",
-      'task.templateSwitched': "已切换任务模板（生成新版本前不影响历史）",
       'batch.title': "面试批次",
       'batch.subtitle': "同一批次的简历才会互相比较。建议按面试时间划分：同一天，或相近的两三天。",
       'batch.suggest': "按面试日期建议",
@@ -509,6 +482,38 @@ window.__ModuleLoader__.load({
       'feedback.removed': "移除",
       'candidate.interviewDate': "面试日期",
       'candidate.interviewDateHint': "用于自动建议批次划分",
+      'task.onlyEntry': "招聘任务是进入筛选流程的唯一入口",
+      'task.listTitle': "招聘任务",
+      'task.listSubtitle': "每个任务一个岗位、一个模板；简历必须先进任务，再划分批次。",
+      'task.batchUnit': "个批次",
+      'batch.includeOther': "也显示其他任务的候选人（用于重新归位）",
+      'task.label': "招聘任务",
+      'task.none': "还没有招聘任务",
+      'task.gateTitle': "先建立一个招聘任务",
+      'task.gateBody': "所有简历都归属于某个招聘任务下的某个面试批次，不同批次的简历不会混在一起比较。先建任务，再选模板，最后把简历分成批次。",
+      'task.gateStep1': "建立招聘任务",
+      'task.gateStep1Body': "一个岗位一个任务，例如「算法工程师 · 2026 春招」。",
+      'task.gateStep2': "选择初始模板",
+      'task.gateStep2Body': "从 13 个岗位模板里挑一个，或之后在模板页自己写。",
+      'task.gateStep3': "上传简历并分批",
+      'task.gateStep3Body': "按面试日期分组，同一天或相近两三天的简历放进同一个批次。",
+      'task.create': "建立招聘任务",
+      'task.name': "任务名称",
+      'task.namePlaceholder': "例如：算法工程师 · 2026 春招",
+      'task.nameRequired': "请填写任务名称",
+      'task.description': "任务说明",
+      'task.descriptionPlaceholder': "招聘背景、HC、面试节奏等（可留空）",
+      'task.initialTemplate': "初始模板",
+      'task.initialTemplateHint': "任务建好后仍可随时切换模板，切换只影响之后的计算，历史版本会保留。",
+      'task.created': "招聘任务已建立",
+      'task.current': "当前招聘任务",
+      'task.saved': "任务已保存",
+      'task.archive': "归档任务",
+      'task.unarchive': "恢复任务",
+      'task.archived': "任务状态已更新",
+      'task.archivedState': "已归档",
+      'task.activeState': "进行中",
+      'task.templateSwitched': "已切换任务模板（生成新版本前不影响历史）",
     }
 
     const enOverrides = {
@@ -652,33 +657,6 @@ window.__ModuleLoader__.load({
       'data.refreshApplied': 'Updated {n} candidate(s)',
       'data.refreshNone': 'All imported records already match the re-parsed result',
       'tab.batches': "Batches & feedback",
-      'task.label': "Recruiting task",
-      'task.none': "No recruiting task yet",
-      'task.gateTitle': "Create a recruiting task first",
-      'task.gateBody': "Every resume belongs to one interview batch of one recruiting task, and different batches are never compared together. Create the task, pick a template, then split the resumes into batches.",
-      'task.gateStep1': "Create the task",
-      'task.gateStep1Body': "One role, one task — e.g. “Algorithm engineer · 2026 spring”.",
-      'task.gateStep2': "Pick an initial template",
-      'task.gateStep2Body': "Start from one of the 13 role templates, or write your own later.",
-      'task.gateStep3': "Upload and batch",
-      'task.gateStep3Body': "Group by interview date: the same day, or a run of two or three days.",
-      'task.create': "Create task",
-      'task.name': "Task name",
-      'task.namePlaceholder': "e.g. Algorithm engineer · 2026 spring",
-      'task.nameRequired': "Give the task a name",
-      'task.description': "Description",
-      'task.descriptionPlaceholder': "Headcount, interview cadence, anything useful (optional)",
-      'task.initialTemplate': "Initial template",
-      'task.initialTemplateHint': "You can switch templates later; the switch only affects new calculations and old versions are kept.",
-      'task.created': "Recruiting task created",
-      'task.current': "Current task",
-      'task.saved': "Task saved",
-      'task.archive': "Archive",
-      'task.unarchive': "Restore",
-      'task.archived': "Task status updated",
-      'task.archivedState': "archived",
-      'task.activeState': "active",
-      'task.templateSwitched': "Task template switched (history is preserved)",
       'batch.title': "Interview batches",
       'batch.subtitle': "Only resumes in the same batch are compared. Group by interview time: the same day, or two or three close days.",
       'batch.suggest': "Suggest from interview dates",
@@ -742,6 +720,38 @@ window.__ModuleLoader__.load({
       'feedback.removed': "removed",
       'candidate.interviewDate': "Interview date",
       'candidate.interviewDateHint': "Used to suggest batch boundaries",
+      'task.onlyEntry': "A recruiting task is the only way into the screening flow",
+      'task.listTitle': "Recruiting tasks",
+      'task.listSubtitle': "One role and one template per task; resumes must enter a task before they can be batched.",
+      'task.batchUnit': "batches",
+      'batch.includeOther': "Also show candidates from other tasks (to re-file them here)",
+      'task.label': "Recruiting task",
+      'task.none': "No recruiting task yet",
+      'task.gateTitle': "Create a recruiting task first",
+      'task.gateBody': "Every resume belongs to one interview batch of one recruiting task, and different batches are never compared together. Create the task, pick a template, then split the resumes into batches.",
+      'task.gateStep1': "Create the task",
+      'task.gateStep1Body': "One role, one task — e.g. “Algorithm engineer · 2026 spring”.",
+      'task.gateStep2': "Pick an initial template",
+      'task.gateStep2Body': "Start from one of the 13 role templates, or write your own later.",
+      'task.gateStep3': "Upload and batch",
+      'task.gateStep3Body': "Group by interview date: the same day, or a run of two or three days.",
+      'task.create': "Create task",
+      'task.name': "Task name",
+      'task.namePlaceholder': "e.g. Algorithm engineer · 2026 spring",
+      'task.nameRequired': "Give the task a name",
+      'task.description': "Description",
+      'task.descriptionPlaceholder': "Headcount, interview cadence, anything useful (optional)",
+      'task.initialTemplate': "Initial template",
+      'task.initialTemplateHint': "You can switch templates later; the switch only affects new calculations and old versions are kept.",
+      'task.created': "Recruiting task created",
+      'task.current': "Current task",
+      'task.saved': "Task saved",
+      'task.archive': "Archive",
+      'task.unarchive': "Restore",
+      'task.archived': "Task status updated",
+      'task.archivedState': "archived",
+      'task.activeState': "active",
+      'task.templateSwitched': "Task template switched (history is preserved)",
     }
     const en = { ...zh, ...enOverrides }
 
@@ -1545,6 +1555,7 @@ window.__ModuleLoader__.load({
       const [copyTarget, setCopyTarget] = useState(null)
       const [pendingDeleteTemplate, setPendingDeleteTemplate] = useState(null)
       const [importOpen, setImportOpen] = useState(false)
+      const [taskModal, setTaskModal] = useState(false)
       // The scan job itself lives on the Host, so closing this dialog (or the
       // whole page) never stops it. Only its id and the review rows live here.
       const [importJob, setImportJob] = useState(null)
@@ -1799,6 +1810,7 @@ window.__ModuleLoader__.load({
               h('div', { className: 'tw-sub' }, t('app.subtitle'))),
             h('div', { className: 'tw-headactions' },
               h(Button, { variant: 'ghost', size: 'sm', onClick: load, title: t('app.refresh'), 'aria-label': t('app.refresh') }, h(Icon, { name: 'refresh', size: 14 })),
+              h(Button, { variant: 'soft', onClick: () => setTaskModal(true) }, h(Icon, { name: 'plus', size: 13 }), t('task.create')),
               h(Button, { variant: 'soft', onClick: () => setImportOpen(true) }, h(Icon, { name: 'upload', size: 13 }), t('screening.import')),
               h(Button, { variant: 'primary', onClick: () => setCandidateModal({ mode: 'create' }) }, h(Icon, { name: 'plus', size: 13 }), t('screening.addCandidate')))),
           h('div', { className: 'tw-badges' },
@@ -1866,7 +1878,7 @@ window.__ModuleLoader__.load({
             h('div', { style: { flex: 1, minWidth: 0 } }, t('demo.banner')),
             h(Button, { size: 'sm', onClick: () => setImportOpen(true) }, h(Icon, { name: 'upload', size: 12 }), t('screening.import')),
             h(Button, { size: 'sm', variant: 'primary', onClick: () => setCandidateModal({ mode: 'create' }) }, t('screening.addCandidate'))) : null,
-          tab === 'batches' ? h(TasksPanel, { state, t, call, notify, busy }) : null,
+          tab === 'batches' ? h(TasksPanel, { state, t, call, notify, busy, onNewTask: () => setTaskModal(true) }) : null,
           tab === 'overview' ? h(Overview, { state, t, activeTemplate, demoMode, onGo: switchTab, onEditTemplate: () => switchTab('templates') }) : null,
           tab === 'screening' ? h(Screening, {
             state, t, template: effectiveTemplate, isDraft, rows, skillMap, query, setQuery, demoMode,
@@ -2013,6 +2025,13 @@ window.__ModuleLoader__.load({
             } }, t('common.delete')),
           ],
         }, h('div', { className: 'tw-small' }, t('candidate.confirmDelete'))) : null,
+        taskModal ? h(TaskModal, {
+          t,
+          state,
+          call,
+          notify,
+          onClose: () => setTaskModal(false),
+        }) : null,
         importOpen ? h(ImportModal, {
           t,
           call,
@@ -2033,11 +2052,11 @@ window.__ModuleLoader__.load({
     }
 
 
-    /** Blocking first-run screen: nothing works until a recruiting task exists. */
-    function TaskGate({ t, state, call, notify }) {
+    /** The fields shared by the first-run gate and the "new task" dialog. */
+    function TaskForm({ t, state, call, notify, onDone }) {
       const [name, setName] = useState('')
       const [description, setDescription] = useState('')
-      const [templateId, setTemplateId] = useState(state.templates[0]?.id ?? '')
+      const [templateId, setTemplateId] = useState(state.activeTemplateId ?? state.templates[0]?.id ?? '')
       const [busy, setBusy] = useState(false)
       const create = async () => {
         if (name.trim() === '') { notify(t('task.nameRequired'), 'error'); return }
@@ -2045,9 +2064,40 @@ window.__ModuleLoader__.load({
         try {
           await call('task.create', { name: name.trim(), description: description.trim(), templateId })
           notify(t('task.created'))
+          setName('')
+          setDescription('')
+          if (typeof onDone === 'function') onDone()
         } catch { /* call() reported it */ } finally { setBusy(false) }
       }
-      return h('div', { className: 'tw-grid', style: { gap: 14, maxWidth: 820, margin: '40px auto 0' } },
+      return h('div', { className: 'tw-grid', style: { gap: 10 } },
+        h(Field, { label: t('task.name') },
+          h('input', {
+            className: 'tw-input',
+            value: name,
+            autoFocus: true,
+            placeholder: t('task.namePlaceholder'),
+            onChange: event => setName(event.target.value),
+            onKeyDown: event => { if (event.key === 'Enter') create() },
+          })),
+        h(Field, { label: t('task.description') },
+          h('textarea', {
+            className: 'tw-textarea',
+            rows: 2,
+            value: description,
+            placeholder: t('task.descriptionPlaceholder'),
+            onChange: event => setDescription(event.target.value),
+          })),
+        h(Field, { label: t('task.initialTemplate') },
+          h('select', { className: 'tw-select', value: templateId, onChange: event => setTemplateId(event.target.value) },
+            state.templates.map(item => h('option', { key: item.id, value: item.id }, `${item.current?.name ?? item.id} · v${item.currentVersion}`)))),
+        h('div', { className: 'tw-hint' }, t('task.initialTemplateHint')),
+        h('div', { className: 'tw-row', style: { justifyContent: 'flex-end' } },
+          h(Button, { variant: 'primary', disabled: busy, onClick: create }, h(Icon, { name: 'plus', size: 13 }), t('task.create'))))
+    }
+
+    /** First-run screen: nothing works until a recruiting task exists. */
+    function TaskGate({ t, state, call, notify }) {
+      return h('div', { className: 'tw-grid', style: { gap: 14, maxWidth: 820, margin: '32px auto 0' } },
         h('div', { className: 'tw-hero' },
           h('h2', null, t('task.gateTitle')),
           h('p', null, t('task.gateBody')),
@@ -2056,27 +2106,35 @@ window.__ModuleLoader__.load({
             h('div', { className: 'tw-step' }, h('div', { className: 'tw-t' }, h('span', { className: 'n' }, '2'), t('task.gateStep2')), h('div', { className: 'tw-b' }, t('task.gateStep2Body'))),
             h('div', { className: 'tw-step' }, h('div', { className: 'tw-t' }, h('span', { className: 'n' }, '3'), t('task.gateStep3')), h('div', { className: 'tw-b' }, t('task.gateStep3Body'))))),
         h('div', { className: 'tw-card' },
-          h('div', { className: 'tw-card-title' }, t('task.create')),
-          h('div', { className: 'tw-grid', style: { gap: 10, marginTop: 10 } },
-            h(Field, { label: t('task.name') },
-              h('input', { className: 'tw-input', value: name, autoFocus: true, placeholder: t('task.namePlaceholder'), onChange: event => setName(event.target.value), onKeyDown: event => { if (event.key === 'Enter') create() } })),
-            h(Field, { label: t('task.description') },
-              h('textarea', { className: 'tw-textarea', rows: 2, value: description, placeholder: t('task.descriptionPlaceholder'), onChange: event => setDescription(event.target.value) })),
-            h(Field, { label: t('task.initialTemplate') },
-              h('select', { className: 'tw-select', value: templateId, onChange: event => setTemplateId(event.target.value) },
-                state.templates.map(item => h('option', { key: item.id, value: item.id }, `${item.current?.name ?? item.id} · v${item.currentVersion}`)))),
-            h('div', { className: 'tw-hint' }, t('task.initialTemplateHint'))),
-          h('div', { className: 'tw-row', style: { marginTop: 14, justifyContent: 'flex-end' } },
-            h(Button, { variant: 'primary', disabled: busy, onClick: create }, h(Icon, { name: 'plus', size: 13 }), t('task.create')))))
+          h('div', { className: 'tw-card-head' },
+            h('div', { className: 'tw-card-title' }, t('task.create')),
+            h(Badge, { tone: 'warn' }, t('task.onlyEntry'))),
+          h(TaskForm, { t, state, call, notify })))
+    }
+
+    /** "New task" dialog, reachable from the header and the batches page. */
+    function TaskModal({ t, state, call, notify, onClose }) {
+      return h(Modal, {
+        title: t('task.create'),
+        onClose,
+        width: 'slim',
+        footer: [h(Button, { key: 'close', onClick: onClose }, t('common.close'))],
+      },
+      h('div', { className: 'tw-hint', style: { marginBottom: 10 } }, t('task.onlyEntry')),
+      h(TaskForm, { t, state, call, notify, onDone: onClose }))
     }
 
     /** Task switcher, batch board and the feedback -> template loop. */
-    function TasksPanel({ state, t, call, notify, busy }) {
+    function TasksPanel({ state, t, call, notify, busy, onNewTask }) {
       const task = state.activeTask
       const batches = state.batches ?? []
       const all = state.allCandidates ?? []
       const feedback = state.feedback ?? []
       const taskCandidates = task === null ? [] : all.filter(candidate => candidate.taskId === task.id)
+      const [showForeign, setShowForeign] = useState(false)
+      const foreignCandidates = task === null ? [] : all.filter(candidate => candidate.taskId !== task.id)
+      const assignable = showForeign ? [...taskCandidates, ...foreignCandidates] : taskCandidates
+      const taskNameById = new Map((state.tasks ?? []).map(item => [item.id, item.name]))
       const [name, setName] = useState(task?.name ?? '')
       const [description, setDescription] = useState(task?.description ?? '')
       const [batchName, setBatchName] = useState('')
@@ -2165,6 +2223,41 @@ window.__ModuleLoader__.load({
         } catch { /* shown */ }
       }
 
+      const taskRows = (state.tasks ?? []).map(item => h('div', {
+        key: item.id,
+        className: `tw-listitem ${item.id === state.activeTaskId ? 'active' : ''}`,
+        role: 'button',
+        tabIndex: 0,
+        onClick: () => { call('context.select', { taskId: item.id }).catch(error => notify(String(error?.message ?? error), 'error')) },
+        onKeyDown: event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault()
+            call('context.select', { taskId: item.id }).catch(error => notify(String(error?.message ?? error), 'error'))
+          }
+        },
+      },
+      h('div', { className: 'tw-row wrap' },
+        h('span', { className: 'name' }, item.name),
+        h(Badge, { tone: item.status === 'archived' ? 'idle' : 'success' },
+          item.status === 'archived' ? t('task.archivedState') : t('task.activeState')),
+        h('span', { className: 'tw-small tw-muted' }, `${item.templateName} v${item.templateVersion ?? '—'}`),
+        h('span', { className: 'tw-small tw-muted' }, `${item.batchCount} ${t('task.batchUnit')}`),
+        h('span', { className: 'tw-small tw-muted' }, `${item.candidateCount} ${t('batch.people')}`),
+        item.feedbackPending > 0 ? h('span', { className: 'tw-chip warn' }, `${item.feedbackPending} ${t('feedback.pending')}`) : null,
+        h('span', { className: 'tw-spacer' }),
+        item.id === state.activeTaskId ? h(Badge, { tone: 'brand' }, t('task.current')) : null)))
+
+      const taskListCard = h('div', { className: 'tw-card' },
+        h('div', { className: 'tw-card-head' },
+          h('div', null,
+            h('div', { className: 'tw-card-title' }, t('task.listTitle')),
+            h('div', { className: 'tw-card-sub' }, t('task.listSubtitle'))),
+          h(Button, { size: 'sm', variant: 'primary', onClick: onNewTask },
+            h(Icon, { name: 'plus', size: 12 }), t('task.create'))),
+        (state.tasks ?? []).length === 0
+          ? h('div', { className: 'tw-empty' }, h('strong', null, t('task.none')), t('task.gateBody'))
+          : h('div', { className: 'tw-grid', style: { gap: 6 } }, taskRows))
+
       const taskCard = h('div', { className: 'tw-card' },
         h('div', { className: 'tw-card-head' },
           h('div', null,
@@ -2235,15 +2328,20 @@ window.__ModuleLoader__.load({
             h('option', { value: '' }, t('batch.pickBatch')),
             batches.map(batch => h('option', { key: batch.id, value: batch.id }, batch.name))),
           h('span', { className: 'tw-small tw-muted' }, t('batch.assignHint'))),
+        h('label', { className: 'tw-row tw-small', style: { marginTop: 6 } },
+          h('input', { type: 'checkbox', checked: showForeign, onChange: event => { setShowForeign(event.target.checked); setChecked([]) } }),
+          h('span', null, t('batch.includeOther')),
+          h('span', { className: 'tw-small tw-muted' }, `${foreignCandidates.length} ${t('batch.people')}`)),
         h('div', { className: 'tw-grid cols3', style: { gap: 4, marginTop: 8 } },
-          taskCandidates.map(candidate => h('label', { key: candidate.id, className: 'tw-row tw-small' },
+          assignable.map(candidate => h('label', { key: candidate.id, className: 'tw-row tw-small' },
             h('input', {
               type: 'checkbox',
               checked: checked.includes(candidate.id),
               onChange: event => setChecked(prev => event.target.checked ? [...prev, candidate.id] : prev.filter(id => id !== candidate.id)),
             }),
             h('span', null, candidate.alias),
-            h('span', { className: 'tw-small tw-muted' }, batchNameById.get(candidate.batchId) ?? '')))),
+            h('span', { className: 'tw-small tw-muted' },
+              `${taskNameById.get(candidate.taskId) ?? t('batch.unassigned')} · ${batchNameById.get(candidate.batchId) ?? ''}`)))),
         h('div', { className: 'tw-row', style: { marginTop: 8 } },
           h('span', { className: 'tw-small tw-muted' }, `${checked.length} ${t('batch.selected')}`),
           h('span', { className: 'tw-spacer' }),
@@ -2350,7 +2448,7 @@ window.__ModuleLoader__.load({
       preview.rationale ? h('div', { className: 'tw-info', style: { marginTop: 10 } }, preview.rationale) : null,
       h('div', { className: 'tw-small tw-muted', style: { marginTop: 8 } }, t('feedback.applyHint')))
 
-      return h('div', { className: 'tw-grid', style: { gap: 14 } }, taskCard, batchCard, feedbackCard, previewModal)
+      return h('div', { className: 'tw-grid', style: { gap: 14 } }, taskListCard, taskCard, batchCard, feedbackCard, previewModal)
     }
 
     function Overview({ state, t, activeTemplate, demoMode, onGo, onEditTemplate }) {

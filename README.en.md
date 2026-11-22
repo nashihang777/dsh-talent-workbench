@@ -81,6 +81,10 @@ Templates are based on publicly advertised job titles and requirements — only 
 2. **Upload resumes** — “Import resumes” and “Add candidate” both write into the current batch of the current task;
 3. **Split into batches** — on the “Batches & feedback” page create a batch with its interview dates (the same day, or two or three close days) and assign resumes to it.
 
+**A recruiting task is the only way into the screening flow**: the header has a permanent “Create task” button and the “Batches & feedback” page lists every task with its own create button; importing without a task is refused instead of quietly dropping everything into a default bucket.
+
+Each task owns its template, batches and candidates. If historical data sits in one task, create a new task and tick “Also show candidates from other tasks” in the assign block to re-file them into the new task's batches.
+
 When no task exists yet the UI is blocked by “create a recruiting task first” — deliberately, so different roles and different interview sessions never end up in one ranking.
 
 ### Suggested batches from interview dates
